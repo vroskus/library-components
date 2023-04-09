@@ -1,0 +1,23 @@
+.TableBody {
+  border-top: none !important;
+}
+
+.TableBody td {
+  border-bottom: none !important;
+}
+
+.TableBody .TableBody-empty {
+  background: linear-gradient(90deg, #E8E8E8, #ffffff, #E8E8E8);
+  background-size: 200% 200%;
+  animation: TableBody-empty-animation 3s linear infinite;
+  height: 20px;
+}
+
+@-webkit-keyframes TableBody-empty-animation {
+  0%{
+    background-position-x: 200%
+  }
+  100%{
+    background-position-x: 0%
+  }
+}

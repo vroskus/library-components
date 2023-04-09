@@ -1,0 +1,13 @@
+.InputHtml .quill {
+  border: 1px solid #dde6e9;
+  border-radius: 0.25rem;
+}
+
+.InputHtml .ql-toolbar {
+  border: none !important;
+  border-bottom: 1px solid #dde6e9 !important;
+}
+
+.InputHtml .ql-container {
+  border: none !important;
+}

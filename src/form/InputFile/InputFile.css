@@ -1,0 +1,11 @@
+.InputFile-image-thumbnail {
+  height: 33px;
+}
+
+.InputFile-image-thumbnail>div {
+  height: 100%;
+}
+
+.InputFile .is-invalid label {
+  border-color: #f05050 !important;
+}
