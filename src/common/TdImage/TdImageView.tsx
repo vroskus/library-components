@@ -7,7 +7,7 @@ import ModalImage from 'react-modal-image';
 // Types
 import type {
   $Component,
-} from '@vroskus/library-types';
+} from '../../types';
 
 type $Props = {
   largeImageUrl: string;

@@ -10,7 +10,7 @@ import _ from 'lodash';
 // Types
 import type {
   $Component,
-} from '@vroskus/library-types';
+} from '../../types';
 
 type $OptionalProps = {
   className?: string;

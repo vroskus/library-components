@@ -15,7 +15,7 @@ import {
 import type {
   $Children,
   $Component,
-} from '@vroskus/library-types';
+} from '../../types';
 
 type $Item = Record<string, unknown>;
 

@@ -21,7 +21,6 @@
     "test:e2e": "echo 'No tests'"
   },
   "dependencies": {
-    "@vroskus/library-types": "1.0.0",
     "availity-reactstrap-validation": "2.7.1",
     "lodash": "4.17.21",
     "moment": "2.29.4",
@@ -37,6 +36,7 @@
   "devDependencies": {
     "@types/jest": "29.5.0",
     "@types/node": "18.15.11",
+    "@types/react": "18.0.33",
     "@typescript-eslint/eslint-plugin": "5.53.0",
     "@typescript-eslint/parser": "5.53.0",
     "copyfiles": "2.4.1",

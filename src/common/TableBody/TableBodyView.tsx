@@ -5,7 +5,7 @@ import * as React from 'react';
 import type {
   $Children,
   $Component,
-} from '@vroskus/library-types';
+} from '../../types';
 
 type $OptionalProps = {
   className?: number;

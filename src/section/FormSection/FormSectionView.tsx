@@ -18,7 +18,7 @@ import {
 // Components
 import type {
   $Component,
-} from '@vroskus/library-types';
+} from '../../types';
 import SectionHeader from '../../common/SectionHeader';
 
 // Types

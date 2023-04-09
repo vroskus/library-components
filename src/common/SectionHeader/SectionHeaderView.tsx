@@ -7,7 +7,7 @@ import {
 // Types
 import type {
   $Component,
-} from '@vroskus/library-types';
+} from '../../types';
 
 type $OptionalProps = {
   bottomBorder?: boolean;

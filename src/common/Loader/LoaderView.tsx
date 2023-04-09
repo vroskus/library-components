@@ -8,7 +8,7 @@ import {
 import type {
   $Children,
   $Component,
-} from '@vroskus/library-types';
+} from '../../types';
 
 type $OptionalProps = {
   className?: string;
