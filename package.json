@@ -1,6 +1,6 @@
 {
   "name": "@vroskus/library-components",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Components",
   "author": "Vilius Roškus <vilius@regattas.eu>",
   "license": "MIT",
@@ -9,9 +9,6 @@
     "url": "git+https://github.com/vroskus/library-components.git"
   },
   "main": "dist/index.js",
-  "files": [
-    "dist/index.js"
-  ],
   "scripts": {
     "postinstall": "npm run build",
     "build": "tsc",
@@ -21,6 +18,9 @@
     "test:e2e": "echo 'No tests'"
   },
   "dependencies": {
+    "@types/lodash": "4.14.192",
+    "@types/moment": "2.13.0",
+    "@types/react": "18.0.33",
     "availity-reactstrap-validation": "2.7.1",
     "lodash": "4.17.21",
     "moment": "2.29.4",
@@ -36,7 +36,6 @@
   "devDependencies": {
     "@types/jest": "29.5.0",
     "@types/node": "18.15.11",
-    "@types/react": "18.0.33",
     "@typescript-eslint/eslint-plugin": "5.53.0",
     "@typescript-eslint/parser": "5.53.0",
     "copyfiles": "2.4.1",
