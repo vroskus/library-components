@@ -111,6 +111,8 @@ const InputDrawingView = function ({
           style={{
             border: '1px solid #eee',
             height: height || 420,
+            marginLeft: 'auto',
+            marginRight: 'auto',
             width: width || 420,
           }}
           onTouchEnd={handleChangeXML}
