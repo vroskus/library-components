@@ -3,6 +3,7 @@ import * as React from 'react';
 import {
   Button,
   ButtonGroup,
+  Label,
 } from 'reactstrap';
 import {
   AvInput,
@@ -10,9 +11,10 @@ import {
 
 // Types
 type $OptionalProps = {
+  className?: string;
   disabled?: boolean;
+  label?: string;
   onChange?: (value: boolean) => unknown;
-  trueColor?: string;
   value?: boolean;
 };
 
@@ -28,9 +30,10 @@ type $State = {
 
 class InputDoubleButtonView extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
+    className: undefined,
     disabled: undefined,
+    label: undefined,
     onChange: undefined,
-    trueColor: undefined,
     value: undefined,
   };
 
@@ -54,14 +57,12 @@ class InputDoubleButtonView extends React.Component<$Props, $State> {
     }
   }
 
-  render() {
+  renderButtons() {
     const {
       disabled,
       labelFalse,
       labelTrue,
-      name,
       onChange,
-      trueColor,
     } = this.props;
     const {
       value,
@@ -69,34 +70,56 @@ class InputDoubleButtonView extends React.Component<$Props, $State> {
 
     return (
       <>
-        <ButtonGroup>
-          <Button
-            size="xs"
-            outline={value}
-            onClick={() => this.setState(
-              {
-                value: false,
-              },
-              () => onChange && onChange(false),
-            )}
-            disabled={disabled}
-          >
-            {labelFalse}
-          </Button>
-          <Button
-            size="xs"
-            outline={!value}
-            color={trueColor || 'success'}
-            onClick={() => this.setState(
-              {
-                value: true,
-              },
-              () => onChange && onChange(true),
-            )}
-            disabled={disabled}
-          >
-            {labelTrue}
-          </Button>
+        <Button
+          outline={!value}
+          color={value ? 'success' : 'secondary'}
+          onClick={() => this.setState(
+            {
+              value: true,
+            },
+            () => onChange && onChange(true),
+          )}
+          disabled={disabled}
+        >
+          {labelTrue}
+        </Button>
+        <Button
+          outline={value}
+          color={!value ? 'danger' : 'secondary'}
+          onClick={() => this.setState(
+            {
+              value: false,
+            },
+            () => onChange && onChange(false),
+          )}
+          disabled={disabled}
+        >
+          {labelFalse}
+        </Button>
+      </>
+    );
+  }
+
+  render() {
+    const {
+      className,
+      label,
+      name,
+    } = this.props;
+    const {
+      value,
+    } = this.state;
+
+    return (
+      <>
+        {label && (
+        <>
+          <Label>{label}</Label>
+          <br />
+        </>
+        )}
+        <ButtonGroup className={className}>
+          {this.renderButtons()}
         </ButtonGroup>
         <AvInput
           name={name}
@@ -106,7 +129,6 @@ class InputDoubleButtonView extends React.Component<$Props, $State> {
           style={{
             display: 'none',
           }}
-          disabled={disabled}
         />
       </>
     );

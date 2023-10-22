@@ -1,27 +1,22 @@
 // Global Components
 import * as React from 'react';
-import {
-  Button,
-  ButtonGroup,
-  Label,
-} from 'reactstrap';
+
 import {
   AvInput,
 } from 'availity-reactstrap-validation';
 
 // Types
 type $OptionalProps = {
-  className?: string;
+  className?: string,
   disabled?: boolean;
   label?: string;
   onChange?: (value: boolean) => unknown;
+  size?: 'sm' | 'md' | 'lg',
   value?: boolean;
 };
 
 type $Props = $OptionalProps & {
   name: string;
-  labelFalse: string;
-  labelTrue: string;
 };
 
 type $State = {
@@ -34,6 +29,7 @@ class InputSwitchView extends React.Component<$Props, $State> {
     disabled: undefined,
     label: undefined,
     onChange: undefined,
+    size: undefined,
     value: undefined,
   };
 
@@ -57,70 +53,47 @@ class InputSwitchView extends React.Component<$Props, $State> {
     }
   }
 
-  renderButtons() {
-    const {
-      disabled,
-      labelFalse,
-      labelTrue,
-      onChange,
-    } = this.props;
-    const {
-      value,
-    } = this.state;
-
-    return (
-      <>
-        <Button
-          outline={!value}
-          color={value ? 'success' : 'secondary'}
-          onClick={() => this.setState(
-            {
-              value: true,
-            },
-            () => onChange && onChange(true),
-          )}
-          disabled={disabled}
-        >
-          {labelTrue}
-        </Button>
-        <Button
-          outline={value}
-          color={!value ? 'danger' : 'secondary'}
-          onClick={() => this.setState(
-            {
-              value: false,
-            },
-            () => onChange && onChange(false),
-          )}
-          disabled={disabled}
-        >
-          {labelFalse}
-        </Button>
-      </>
-    );
-  }
-
   render() {
     const {
       className,
+      disabled,
       label,
       name,
+      onChange,
+      size,
     } = this.props;
     const {
       value,
     } = this.state;
 
+    const id = `InputSwitch-${name}`;
+
     return (
       <>
-        {label && (
-        <>
-          <Label>{label}</Label>
-          <br />
-        </>
-        )}
-        <ButtonGroup className={className}>
-          {this.renderButtons()}
-        </ButtonGroup>
+        <div className={`InputSwitch form-check form-switch form-switch-${size || 'md'} ${className || ''}`}>
+          <input
+            className="form-check-input"
+            type="checkbox"
+            role="switch"
+            id={id}
+            checked={value}
+            onChange={() => this.setState(
+              {
+                value: !value,
+              },
+              () => onChange && onChange(!value),
+            )}
+            disabled={disabled}
+          />
+          {label && (
+            <label
+              className="form-check-label"
+              htmlFor={id}
+            >
+              {label}
+            </label>
+          )}
+        </div>
         <AvInput
           name={name}
           type="checkbox"
@@ -129,6 +102,7 @@ class InputSwitchView extends React.Component<$Props, $State> {
           style={{
             display: 'none',
           }}
+          disabled={disabled}
         />
       </>
     );
