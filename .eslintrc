@@ -73,7 +73,6 @@
     "no-unused-private-class-members": [2],
     "no-await-in-loop": 0,
     "promise/always-return": [0],
-    "sonarjs/no-duplicate-string": ["error", 5],
     "sonarjs/no-small-switch": [0],
     "sonarjs/prefer-single-boolean-return": [0],
     "func-names": [0],
