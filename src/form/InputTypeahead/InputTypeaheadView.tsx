@@ -22,8 +22,7 @@ type $Ref = {
 
 type $Option = {
   id: string,
-  [label: string]: string,
-};
+} & Record<string, unknown>;
 
 type $Options = Array<$Option>;
 
@@ -32,14 +31,14 @@ type $OptionalProps = {
   label?: string | void;
   labelKey?: string | void;
   minLength?: number | void;
-  onOptionSelect?: (arg0: $Option) => (string | void);
+  onOptionSelect?: (option: $Option) => (string | void);
   placeholder?: string | void;
   required?: boolean | void;
   value?: string | null | void;
 };
 
 type $Props = $OptionalProps & {
-  getOptions: (query: string) => Promise<$Options>;
+  getOptions: (query: string) => Promise<Array<$Option>>;
   name: string;
 };
 
@@ -163,10 +162,10 @@ class InputTypeaheadView extends React.Component<$Props, $State> {
           // @ts-ignore
           ref={this.wrapperRef}
           onChange={(selectedOptions: $Options) => {
-            let valueToSet: string | void = _.get(
+            let valueToSet = _.get(
               selectedOptions[0],
               labelKeyToUse,
-            );
+            ) as string | void;
 
             if (onOptionSelect) {
               const onOptionSelectValue: string | void = onOptionSelect(selectedOptions[0]);
