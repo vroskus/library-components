@@ -31,7 +31,7 @@ type $OptionalProps = {
   label?: string | void;
   labelKey?: string | void;
   minLength?: number | void;
-  onOptionSelect?: (option: $Option) => (string | void);
+  onOptionSelect?: (option: $Option | void) => (string | void);
   placeholder?: string | void;
   required?: boolean | void;
   value?: string | null | void;
