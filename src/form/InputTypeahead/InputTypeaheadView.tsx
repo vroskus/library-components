@@ -9,6 +9,7 @@ import {
 } from 'availity-reactstrap-validation';
 import {
   AsyncTypeahead,
+  Typeahead,
 } from 'react-bootstrap-typeahead';
 
 // Helpers
@@ -60,7 +61,7 @@ class InputTypeaheadView extends React.Component<$Props, $State> {
     value: undefined,
   };
 
-  wrapperRef: React.RefObject<$Ref>;
+  wrapperRef: React.RefObject<typeof Typeahead & $Ref>;
 
   handleClickOutsideBind: (event: Event) => void;
 
@@ -73,7 +74,7 @@ class InputTypeaheadView extends React.Component<$Props, $State> {
       value: props.value,
     };
 
-    this.wrapperRef = React.createRef<$Ref>();
+    this.wrapperRef = React.createRef<typeof Typeahead & $Ref>();
 
     this.handleClickOutsideBind = this.handleClickOutside.bind(this);
   }
@@ -162,16 +163,20 @@ class InputTypeaheadView extends React.Component<$Props, $State> {
           // @ts-ignore
           ref={this.wrapperRef}
           onChange={(selectedOptions: $Options) => {
-            let valueToSet = _.get(
-              selectedOptions[0],
-              labelKeyToUse,
-            ) as string | void;
+            let valueToSet;
 
-            if (onOptionSelect) {
-              const onOptionSelectValue: string | void = onOptionSelect(selectedOptions[0]);
+            if (selectedOptions.length > 0) {
+              valueToSet = _.get(
+                selectedOptions[0],
+                `${labelKeyToUse}`,
+              ) as string | void;
 
-              if (onOptionSelectValue) {
-                valueToSet = onOptionSelectValue;
+              if (onOptionSelect) {
+                const onOptionSelectValue: string | void = onOptionSelect(selectedOptions[0]);
+
+                if (onOptionSelectValue) {
+                  valueToSet = onOptionSelectValue;
+                }
               }
             }
 

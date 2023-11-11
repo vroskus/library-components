@@ -13,8 +13,7 @@ import _ from 'lodash';
 // Types
 type $Option = {
   id: string,
-  [label: string]: string,
-};
+} & Record<string, unknown>;
 
 type $Options = Array<$Option>;
 
@@ -88,7 +87,7 @@ class InputMultiselectView extends React.Component<$Props, $State> {
       value,
     } = this.state;
 
-    const labelValue: string = labelKey || 'Name';
+    const labelKeyToUse: string = labelKey || 'Name';
 
     return (
       <FormGroup className="InputMultiselect">
@@ -122,7 +121,7 @@ class InputMultiselectView extends React.Component<$Props, $State> {
               key={option.id}
               value={option.id}
             >
-              {option[labelValue]}
+              {(option[labelKeyToUse] as string | void) || '---'}
             </option>
           ))}
         </AvField>
