@@ -93,12 +93,8 @@ class InputMultiselectView extends React.Component<$Props, $State> {
       <FormGroup className="InputMultiselect">
         <AvField
           label={label}
-          name={name}
-          type="select"
           multiple
-          placeholder={labelSelectMultiple}
-          value={value}
-          required={required}
+          name={name}
           onChange={(e) => {
             const toggleValue: string = e.target.value;
 
@@ -115,6 +111,10 @@ class InputMultiselectView extends React.Component<$Props, $State> {
               onChange(newValue);
             }
           }}
+          placeholder={labelSelectMultiple}
+          required={required}
+          type="select"
+          value={value}
         >
           {options.map((option: $Option) => (
             <option

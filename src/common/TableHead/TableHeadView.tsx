@@ -5,10 +5,10 @@ import * as React from 'react';
 type $Sort = [() => Promise<unknown>, () => Promise<unknown>];
 
 type $Item = {
+  className?: string;
   name: string;
   sort?: $Sort;
   style?: Record<string, unknown>;
-  className?: string;
 };
 
 type $Props = {
@@ -17,7 +17,7 @@ type $Props = {
 };
 
 type $State = {
-  activeItemIndex: number | null;
+  activeItemIndex: null | number;
   lock: boolean;
   reverse: boolean;
 };
@@ -77,17 +77,19 @@ class TableHeadView extends React.Component<$Props, $State> {
 
     return (
       <th
-        role="button"
+        className={item.className}
         onClick={() => !lock && this.toggle(
           sort,
           index,
         )}
+        role="button"
         style={item.style || {
         }}
-        className={item.className}
       >
         {item.name}
-        {activeItemIndex === index ? <em className={`ml-1 text-muted ${reverse ? 'fa fa-sort-up' : 'fa fa-sort-down'}`} /> : (
+        {activeItemIndex === index ? (
+          <em className={`ml-1 text-muted ${reverse ? 'fa fa-sort-up' : 'fa fa-sort-down'}`} />
+        ) : (
           <em
             className="ml-1 fa fa-sort"
             style={{
@@ -109,9 +111,10 @@ class TableHeadView extends React.Component<$Props, $State> {
       return (
         <thead className="TableHead">
           <tr>
-            <th style={{
-              height: 37,
-            }}
+            <th
+              style={{
+                height: 37,
+              }}
             />
           </tr>
         </thead>
@@ -127,10 +130,10 @@ class TableHeadView extends React.Component<$Props, $State> {
             index,
           ) : (
             <th
-              style={item.style || {
-              }}
               className={item.className}
               key={item.name}
+              style={item.style || {
+              }}
             >
               {item.name}
             </th>

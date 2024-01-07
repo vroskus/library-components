@@ -71,28 +71,28 @@ class InputDoubleButtonView extends React.Component<$Props, $State> {
     return (
       <>
         <Button
-          outline={!value}
           color={value ? 'success' : 'secondary'}
+          disabled={disabled}
           onClick={() => this.setState(
             {
               value: true,
             },
             () => onChange && onChange(true),
           )}
-          disabled={disabled}
+          outline={!value}
         >
           {labelTrue}
         </Button>
         <Button
-          outline={value}
           color={!value ? 'danger' : 'secondary'}
+          disabled={disabled}
           onClick={() => this.setState(
             {
               value: false,
             },
             () => onChange && onChange(false),
           )}
-          disabled={disabled}
+          outline={value}
         >
           {labelFalse}
         </Button>
@@ -113,22 +113,24 @@ class InputDoubleButtonView extends React.Component<$Props, $State> {
     return (
       <>
         {label && (
-        <>
-          <Label>{label}</Label>
-          <br />
-        </>
+          <>
+            <Label>
+              {label}
+            </Label>
+            <br />
+          </>
         )}
         <ButtonGroup className={className}>
           {this.renderButtons()}
         </ButtonGroup>
         <AvInput
-          name={name}
-          type="checkbox"
-          value={value}
           checked={value}
+          name={name}
           style={{
             display: 'none',
           }}
+          type="checkbox"
+          value={value}
         />
       </>
     );

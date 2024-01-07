@@ -21,25 +21,25 @@ type $OptionalProps = {
   disabled?: boolean;
   imageThumbDirUrl?: string;
   label?: string;
-  onChange?: (arg0: string | null) => unknown;
+  onChange?: (arg0: null | string) => unknown;
   required?: boolean;
-  value?: string | null;
+  value?: null | string;
 };
 
 type $Props = $OptionalProps & {
-  uploadUrl: string;
+  fileDirUrl: string;
   labelChangeFile: string;
   labelError: string;
   labelFile: string;
   name: string;
   onError: (arg0: Error) => unknown;
-  fileDirUrl: string;
+  uploadUrl: string;
 };
 
 type $State = {
   error: Error | null;
   loading: boolean;
-  value?: string | null;
+  value?: null | string;
 };
 
 class InputFileView extends React.Component<$Props, $State> {
@@ -75,7 +75,7 @@ class InputFileView extends React.Component<$Props, $State> {
     }
   }
 
-  async handleFile(type: 'image' | 'file', content: Blob): Promise<void> {
+  async handleFile(type: 'file' | 'image', content: Blob): Promise<void> {
     const {
       onChange,
       onError,
@@ -97,8 +97,8 @@ class InputFileView extends React.Component<$Props, $State> {
       );
 
       const params = {
-        body: data,
         'Content-Type': 'multipart/form-data',
+        body: data,
         method: 'POST',
       };
       const response = await fetch(
@@ -176,10 +176,10 @@ class InputFileView extends React.Component<$Props, $State> {
 
     return (
       <AvInput
-        name={`_${name}`}
-        type="file"
         accept="image/png,image/gif,image/jpeg"
-        value={value}
+        disabled={disabled}
+        invalid={error !== null}
+        name={`_${name}`}
         onChange={(e: Event) => {
           const target = e.target as HTMLInputElement;
           const file: File = (target.files as FileList)[0];
@@ -190,8 +190,8 @@ class InputFileView extends React.Component<$Props, $State> {
           );
         }}
         required={required}
-        disabled={disabled}
-        invalid={error !== null}
+        type="file"
+        value={value}
       />
     );
   }
@@ -210,9 +210,9 @@ class InputFileView extends React.Component<$Props, $State> {
       <div className={`input-group ${className || ''}`}>
         <div className="form-control py-0 InputFile-image-thumbnail text-center">
           <ModalImage
+            className="img-fluid"
             large={`${fileDirUrl}/${value || ''}`}
             small={`${imageThumbDirUrl || ''}/${value || ''}`}
-            className="img-fluid"
           />
         </div>
         <div className="input-group-append">
@@ -236,11 +236,11 @@ class InputFileView extends React.Component<$Props, $State> {
 
     return (
       <AvInput
-        className={className}
-        name={`_${name}`}
-        type="file"
         accept="application/pdf,image/png,image/gif,image/jpeg"
-        value={value}
+        className={className}
+        disabled={disabled}
+        invalid={error !== null}
+        name={`_${name}`}
         onChange={(e: Event) => {
           const target = e.target as HTMLInputElement;
           const file: File = (target.files as FileList)[0];
@@ -251,8 +251,8 @@ class InputFileView extends React.Component<$Props, $State> {
           );
         }}
         required={required}
-        disabled={disabled}
-        invalid={error !== null}
+        type="file"
+        value={value}
       />
     );
   }
@@ -277,8 +277,8 @@ class InputFileView extends React.Component<$Props, $State> {
         <div className="form-control">
           <a
             href={`${fileDirUrl}/${value || ''}`}
-            target="_blank"
             rel="noreferrer"
+            target="_blank"
           >
             {labelFile}
           </a>
@@ -319,11 +319,11 @@ class InputFileView extends React.Component<$Props, $State> {
         {value ? this.renderValue() : this.renderInput()}
         <AvInput
           name={name}
-          type="text"
-          value={value}
           style={{
             display: 'none',
           }}
+          type="text"
+          value={value}
         />
       </>
     );
@@ -346,7 +346,11 @@ class InputFileView extends React.Component<$Props, $State> {
 
     return (
       <FormGroup className="InputFile">
-        {label && <Label>{label}</Label>}
+        {label && (
+          <Label>
+            {label}
+          </Label>
+        )}
         {loading ? (
           <div className="form-control py-0 text-center">
             <Spinner color="primary" />

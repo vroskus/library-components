@@ -16,8 +16,8 @@ import _ from 'lodash';
 type $OptionalProps = {
   height?: number;
   label?: string;
-  onChange?: (value: string | null) => unknown;
-  value?: string | null;
+  onChange?: (value: null | string) => unknown;
+  value?: null | string;
 };
 
 type $Props = $OptionalProps & {
@@ -25,7 +25,7 @@ type $Props = $OptionalProps & {
 };
 
 type $State = {
-  value: string | null;
+  value: null | string;
 };
 
 class InputHtmlView extends React.Component<$Props, $State> {
@@ -36,7 +36,7 @@ class InputHtmlView extends React.Component<$Props, $State> {
     value: undefined,
   };
 
-  onChange: (value: string | null) => unknown;
+  onChange: (value: null | string) => unknown;
 
   constructor(props: $Props) {
     super(props);
@@ -63,7 +63,7 @@ class InputHtmlView extends React.Component<$Props, $State> {
     }
   }
 
-  setValue(newValue: string | null): void {
+  setValue(newValue: null | string): void {
     let value = newValue;
 
     if (newValue === '<p><br></p>') {
@@ -89,20 +89,24 @@ class InputHtmlView extends React.Component<$Props, $State> {
 
     return (
       <FormGroup className="InputHtml">
-        {label && <Label>{label}</Label>}
+        {label && (
+          <Label>
+            {label}
+          </Label>
+        )}
         <ReactQuill
           onChange={(newValue) => this.setValue(newValue)}
-          value={value}
           style={{
             height,
           }}
+          value={value}
         />
         <AvInput
           name={name}
-          value={value}
           style={{
             display: 'none',
           }}
+          value={value}
         />
       </FormGroup>
     );

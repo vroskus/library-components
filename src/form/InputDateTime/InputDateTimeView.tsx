@@ -22,11 +22,11 @@ type $OptionalProps = {
   label?: string;
   onChange?: (value: Date | null) => unknown;
   range?: {
-    min?: Date;
     max?: Date;
+    min?: Date;
   };
   required?: boolean;
-  value?: Date | string | null;
+  value?: Date | null | string;
 };
 
 type $Props = $OptionalProps & {
@@ -37,7 +37,7 @@ type $Props = $OptionalProps & {
 
 type $State = {
   dateValue: Date | null;
-  stringValue?: string | null;
+  stringValue?: null | string;
 };
 
 class InputDateTimeView extends React.Component<$Props, $State> {
@@ -84,7 +84,7 @@ class InputDateTimeView extends React.Component<$Props, $State> {
     }
   }
 
-  setValue(value: string | null): void {
+  setValue(value: null | string): void {
     const {
       timezone,
     } = this.props;
@@ -100,7 +100,7 @@ class InputDateTimeView extends React.Component<$Props, $State> {
     });
   }
 
-  changeValue(value: string | null): void {
+  changeValue(value: null | string): void {
     const {
       onChange,
       timezone,
@@ -121,7 +121,7 @@ class InputDateTimeView extends React.Component<$Props, $State> {
     });
   }
 
-  isValidDate(value: string | null | void): boolean {
+  isValidDate(value: null | string | void): boolean {
     if (value) {
       return moment(
         value,
@@ -158,7 +158,7 @@ class InputDateTimeView extends React.Component<$Props, $State> {
   }
 
   /* eslint-disable-next-line complexity */
-  validateValue(value: string | null | void): boolean {
+  validateValue(value: null | string | void): boolean {
     const {
       required,
     } = this.props;
@@ -189,29 +189,33 @@ class InputDateTimeView extends React.Component<$Props, $State> {
 
     return (
       <FormGroup className="InputDateTime">
-        {label && <Label>{label}</Label>}
+        {label && (
+          <Label>
+            {label}
+          </Label>
+        )}
         <InputGroup>
           <AvInput
-            value={stringValue}
-            onChange={(e) => this.changeValue(e.target.value === '' ? null : e.target.value)}
-            name={`_${name}`}
             disabled={disabled}
+            name={`_${name}`}
+            onChange={(e) => this.changeValue(e.target.value === '' ? null : e.target.value)}
+            required={required}
             validate={{
               async: async (v) => this.validateValue(v),
             }}
-            required={required}
+            value={stringValue}
           />
           <AvInput
             name={name}
-            value={dateValue}
             style={{
               display: 'none',
             }}
+            value={dateValue}
           />
           <Button
             color="default"
-            title={labelOpenCalendar}
             onClick={openCalendar}
+            title={labelOpenCalendar}
           >
             <em className="fa icon-clock" />
           </Button>
@@ -230,16 +234,16 @@ class InputDateTimeView extends React.Component<$Props, $State> {
 
     return (
       <Datetime
-        value={stringValue}
         dateFormat="YYYY-MM-DD"
-        timeFormat="HH:mm"
         displayTimeZone={timezone}
+        isValidDate={(value) => this.isValidRange(value)}
         onChange={(m: moment.Moment) => this.changeValue(m.format(this.format))}
         renderInput={(props: $Props, open: () => unknown) => this.renderInput(
           props,
           open,
         )}
-        isValidDate={(value) => this.isValidRange(value)}
+        timeFormat="HH:mm"
+        value={stringValue}
       />
     );
   }

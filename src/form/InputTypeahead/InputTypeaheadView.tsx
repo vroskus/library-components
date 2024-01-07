@@ -35,7 +35,7 @@ type $OptionalProps = {
   onOptionSelect?: (option: $Option | void) => (string | void);
   placeholder?: string | void;
   required?: boolean | void;
-  value?: string | null | void;
+  value?: null | string | void;
 };
 
 type $Props = $OptionalProps & {
@@ -46,7 +46,7 @@ type $Props = $OptionalProps & {
 type $State = {
   loading: boolean;
   options: $Options;
-  value?: string | null | void;
+  value?: null | string | void;
 };
 
 class InputTypeaheadView extends React.Component<$Props, $State> {
@@ -152,16 +152,17 @@ class InputTypeaheadView extends React.Component<$Props, $State> {
 
     return (
       <FormGroup className={`InputTypeahead ${className || ''}`}>
-        {label && <Label>{label}</Label>}
+        {label && (
+          <Label>
+            {label}
+          </Label>
+        )}
         <AsyncTypeahead
-          id={name}
-          minLength={minLength || 3}
-          useCache={false}
           filterBy={() => true}
+          id={name}
+          labelKey={labelKeyToUse}
           loading={loading}
-          value={value}
-          // @ts-ignore
-          ref={this.wrapperRef}
+          minLength={minLength || 3}
           onChange={(selectedOptions: $Options) => {
             let valueToSet;
 
@@ -184,26 +185,6 @@ class InputTypeaheadView extends React.Component<$Props, $State> {
               value: valueToSet,
             });
           }}
-          renderInput={({
-            inputRef,
-            referenceElementRef,
-            ...inputProps
-          }) => (
-            <AvInput
-              // eslint-disable-next-line
-              {...inputProps} ref={(input) => {
-                inputRef(input);
-                referenceElementRef(input);
-              }}
-              placeholder={placeholder}
-              autoComplete="off"
-              value={value}
-              name={name}
-              label={label}
-              required={required}
-            />
-          )}
-          labelKey={labelKeyToUse}
           onInputChange={async (query: string) => {
             await this.setStateAsync({
               loading: true,
@@ -220,8 +201,31 @@ class InputTypeaheadView extends React.Component<$Props, $State> {
               options: cleanOptions,
             });
           }}
-          options={options}
           onSearch={() => {}}
+          options={options}
+          // @ts-ignore
+          ref={this.wrapperRef}
+          renderInput={({
+            inputRef,
+            referenceElementRef,
+            ...inputProps
+          }) => (
+            <AvInput
+              // eslint-disable-next-line
+              {...inputProps} autoComplete="off"
+              label={label}
+              name={name}
+              placeholder={placeholder}
+              ref={(input) => {
+                inputRef(input);
+                referenceElementRef(input);
+              }}
+              required={required}
+              value={value}
+            />
+          )}
+          useCache={false}
+          value={value}
         />
       </FormGroup>
     );

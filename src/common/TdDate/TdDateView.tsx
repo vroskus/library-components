@@ -14,7 +14,7 @@ type $OptionalProps = {
   };
   multiple?: boolean;
   type?: 'date' | 'dateTime';
-  value?: string | Date | null;
+  value?: Date | null | string;
 };
 
 type $Props = $OptionalProps;
@@ -69,8 +69,12 @@ class TdDateView extends React.Component<$Props> {
 
     return multiple === true ? (
       <td className="TdDate TdDate-multiple">
-        <div>{view}</div>
-        <small className="text-muted">{dateText}</small>
+        <div>
+          {view}
+        </div>
+        <small className="text-muted">
+          {dateText}
+        </small>
       </td>
     ) : (
       <td

@@ -8,6 +8,9 @@ import {
   ModalHeader,
 } from 'reactstrap';
 
+// Components
+import TitleSubtitle from '../../common/TitleSubtitle';
+
 // Types
 import type {
   $Children,
@@ -17,16 +20,16 @@ import type {
 type $OptionalProps = {
   buttonTitle?: string;
   onOpened?: () => unknown;
-  size?: 'sm' | 'lg' | 'xl';
+  size?: 'lg' | 'sm' | 'xl';
 };
 
 type $OwnProps = $OptionalProps & {
-  onAction: () => unknown;
   children: $Children;
   content: $Component<unknown> | string;
   id: string;
   labelCloseButton: string;
   labelDeleteButton: string;
+  onAction: () => unknown;
   subTitle: string;
   title: string;
 };
@@ -98,31 +101,33 @@ class DeleteDialogView extends React.Component<$Props, $State> {
       <>
         {this.childrenWithToggleHandler()}
         <Modal
+          centered
           id={id}
           isOpen={visible}
-          toggle={() => this.toggle()}
-          centered
-          size={size}
           onOpened={onOpened}
+          size={size}
+          toggle={() => this.toggle()}
         >
           <ModalHeader>
-            <p className="mb-0">{title}</p>
-            {subTitle && <small>{subTitle}</small>}
+            <TitleSubtitle
+              subTitle={subTitle}
+              title={title}
+            />
           </ModalHeader>
           <ModalBody>
             {content}
           </ModalBody>
           <ModalFooter>
             <Button
-              id="dialog-confirm-button"
               color="danger"
+              id="dialog-confirm-button"
               onClick={() => onAction() && this.toggle()}
             >
               {buttonTitle || labelDeleteButton}
             </Button>
             <Button
-              id="dialog-close-button"
               color="secondary"
+              id="dialog-close-button"
               onClick={() => this.toggle()}
             >
               {labelCloseButton}

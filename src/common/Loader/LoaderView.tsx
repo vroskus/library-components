@@ -12,7 +12,7 @@ import type {
 
 type $OptionalProps = {
   className?: string;
-  size?: 'sm' | 'lg';
+  size?: 'lg' | 'sm';
 };
 
 type $Props = $OptionalProps & {
@@ -26,15 +26,22 @@ const LoaderView = function ({
   loading,
   size,
 }: $Props): $Component<$Props> {
+  let sizeClassName = '';
+  let style;
+
+  if (size === 'lg') {
+    sizeClassName = 'py-5';
+    style = {
+      height: '3rem',
+      width: '3rem',
+    };
+  }
+
   return loading === true ? (
-    <div className={`d-flex justify-content-center w-100 ${size === 'lg' ? 'py-5' : ''}`}>
+    <div className={`d-flex justify-content-center w-100 ${sizeClassName}`}>
       <Spinner
         color="primary"
-        style={size === 'lg' ? {
-          height: '3rem',
-          width: '3rem',
-        } : {
-        }}
+        style={style}
       />
     </div>
   ) : (

@@ -8,6 +8,9 @@ import {
   ModalHeader,
 } from 'reactstrap';
 
+// Components
+import TitleSubtitle from '../../common/TitleSubtitle';
+
 // Types
 import type {
   $Children,
@@ -15,12 +18,12 @@ import type {
 } from '../../types';
 
 type $OptionalProps = {
-  onAction?: () => unknown;
   children?: $Children;
   closeAction?: () => unknown;
   instant?: boolean;
+  onAction?: () => unknown;
   onOpened?: () => unknown;
-  size?: 'sm' | 'lg' | 'xl';
+  size?: 'lg' | 'sm' | 'xl';
   subTitle?: string;
 };
 
@@ -104,37 +107,39 @@ class CommonDialogView extends React.Component<$Props, $State> {
       <>
         {!instant && this.childrenWithToggleHandler()}
         <Modal
+          centered
           id={id}
           isOpen={visible}
-          toggle={() => this.toggle()}
-          centered
-          size={size}
           onOpened={onOpened}
+          size={size}
+          toggle={() => this.toggle()}
         >
           <ModalHeader>
-            <p className="mb-0">{title}</p>
-            {subTitle && <small>{subTitle}</small>}
+            <TitleSubtitle
+              subTitle={subTitle}
+              title={title}
+            />
           </ModalHeader>
           <ModalBody className="p-0">
             {content}
           </ModalBody>
           <ModalFooter>
             {onAction && (
-            <Button
-              id="dialog-confirm-button"
-              color="success"
-              onClick={() => {
-                onAction();
+              <Button
+                color="success"
+                id="dialog-confirm-button"
+                onClick={() => {
+                  onAction();
 
-                this.toggle();
-              }}
-            >
-              {labelConfirmButton}
-            </Button>
+                  this.toggle();
+                }}
+              >
+                {labelConfirmButton}
+              </Button>
             )}
             <Button
-              id="dialog-close-button"
               color="secondary"
+              id="dialog-close-button"
               onClick={() => {
                 if (closeAction) {
                   closeAction();

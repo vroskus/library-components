@@ -12,14 +12,14 @@ import {
 type $OptionalProps = {
   disabled?: boolean;
   onChange?: (value: number) => unknown;
-  value?: number | null;
+  value?: null | number;
 };
 
 type $Props = $OptionalProps & {
-  name: string;
   labelDisabled: string;
   labelEnabled: string;
   labelRequired: string;
+  name: string;
 };
 
 type $State = {
@@ -70,54 +70,54 @@ class InputTripleButtonView extends React.Component<$Props, $State> {
       <>
         <ButtonGroup>
           <Button
-            size="xs"
-            outline={value !== 0}
+            disabled={disabled}
             onClick={() => this.setState(
               {
                 value: 0,
               },
               () => onChange && onChange(0),
             )}
-            disabled={disabled}
+            outline={value !== 0}
+            size="xs"
           >
             {labelDisabled}
           </Button>
           <Button
-            size="xs"
-            outline={value !== 1}
             color="success"
+            disabled={disabled}
             onClick={() => this.setState(
               {
                 value: 1,
               },
               () => onChange && onChange(1),
             )}
-            disabled={disabled}
+            outline={value !== 1}
+            size="xs"
           >
             {labelEnabled}
           </Button>
           <Button
-            size="xs"
-            outline={value !== 2}
             color="warning"
+            disabled={disabled}
             onClick={() => this.setState(
               {
                 value: 2,
               },
               () => onChange && onChange(2),
             )}
-            disabled={disabled}
+            outline={value !== 2}
+            size="xs"
           >
             {labelRequired}
           </Button>
         </ButtonGroup>
         <AvInput
+          disabled={disabled}
           name={name}
-          value={value}
           style={{
             display: 'none',
           }}
-          disabled={disabled}
+          value={value}
         />
       </>
     );

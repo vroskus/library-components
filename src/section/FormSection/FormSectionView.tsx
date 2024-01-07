@@ -43,10 +43,10 @@ type $OptionalProps = {
 };
 
 type $Props = $OptionalProps & {
-  onAction: (arg0: $Item) => unknown;
   fields: $Component<unknown>;
   labelClearButton: string;
   labelSaveButton: string;
+  onAction: (arg0: $Item) => unknown;
 };
 
 type $State = {
@@ -106,41 +106,41 @@ class FormSectionView extends React.Component<$Props, $State> {
     return (
       <Modal isOpen={confirmItem !== null}>
         {confirmItem !== null && confirm && (
-        <>
-          <ModalHeader>
-            <p className="mb-0">
-              {confirm.labelHeader}
-            </p>
-          </ModalHeader>
-          <ModalBody>
-            <p>
-              {confirm.labelContent}
-            </p>
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              color="warning"
-              onClick={() => {
-                onAction(confirmItem);
+          <>
+            <ModalHeader>
+              <p className="mb-0">
+                {confirm.labelHeader}
+              </p>
+            </ModalHeader>
+            <ModalBody>
+              <p>
+                {confirm.labelContent}
+              </p>
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                color="warning"
+                onClick={() => {
+                  onAction(confirmItem);
 
-                this.setState({
+                  this.setState({
+                    confirmItem: null,
+                  });
+                }}
+              >
+                {confirm.labelConfirmButton || 'Confirm'}
+              </Button>
+              <Button
+                color="secondary"
+                onClick={() => this.setState({
                   confirmItem: null,
-                });
-              }}
-            >
-              {confirm.labelConfirmButton || 'Confirm'}
-            </Button>
-            <Button
-              outline
-              color="secondary"
-              onClick={() => this.setState({
-                confirmItem: null,
-              })}
-            >
-              {confirm.labelCloseButton}
-            </Button>
-          </ModalFooter>
-        </>
+                })}
+                outline
+              >
+                {confirm.labelCloseButton}
+              </Button>
+            </ModalFooter>
+          </>
         )}
       </Modal>
     );
@@ -155,11 +155,11 @@ class FormSectionView extends React.Component<$Props, $State> {
 
     return onClear && changed ? (
       <Button
-        outline
-        color="secondary"
-        type="button"
         className="mr-2"
+        color="secondary"
         onClick={() => this.clear()}
+        outline
+        type="button"
       >
         {labelClearButton}
       </Button>
@@ -179,9 +179,9 @@ class FormSectionView extends React.Component<$Props, $State> {
           {this.renderClearButton()}
           <Button
             color={!changed ? 'default' : buttonColor || 'success'}
-            type="submit"
             disabled={!changed}
             outline={!changed}
+            type="submit"
           >
             {labelSaveButton}
           </Button>
@@ -202,15 +202,16 @@ class FormSectionView extends React.Component<$Props, $State> {
 
     return (
       <CardBody className="pb-2">
-        <AvForm onValidSubmit={(event: Event, values: $Item) => {
-          if (confirm) {
-            this.setState({
-              confirmItem: values,
-            });
-          } else {
-            onAction(values);
-          }
-        }}
+        <AvForm
+          onValidSubmit={(event: Event, values: $Item) => {
+            if (confirm) {
+              this.setState({
+                confirmItem: values,
+              });
+            } else {
+              onAction(values);
+            }
+          }}
         >
           {!clear && fields}
           {this.renderButtons()}
@@ -231,15 +232,15 @@ class FormSectionView extends React.Component<$Props, $State> {
 
     return (
       <Card
-        id={id}
         className="FormSection"
+        id={id}
       >
         <SectionHeader
-          title={headerTitle || ''}
-          iconClass={headerIconClass}
-          description={headerDescription}
-          rightButtons={headerButtons}
           bottomBorder
+          description={headerDescription}
+          iconClass={headerIconClass}
+          rightButtons={headerButtons}
+          title={headerTitle || ''}
         />
         {this.renderContent()}
         {confirm && this.renderConfirmDialog()}

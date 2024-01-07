@@ -3,6 +3,7 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "requireConfigFile": false,
+    "ecmaVersion": "latest",
     "project": ["**/tsconfig.eslint.json"]
   },
   "extends": [
@@ -12,24 +13,24 @@
     "plugin:import/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:jsx-a11y/recommended",
-    "plugin:react/recommended",
+    "plugin:perfectionist/recommended-natural",
     "plugin:react-hooks/recommended",
-    "plugin:promise/recommended",
+    "plugin:react/recommended",
     "plugin:cypress/recommended",
-    "plugin:sonarjs/recommended",
-    "plugin:sort/recommended"
+    "plugin:jsx-a11y/recommended",
+    "plugin:promise/recommended",
+    "plugin:sonarjs/recommended"
   ],
   "plugins": [
     "@typescript-eslint",
     "import",
     "import-newlines",
     "react",
-    "jsx-a11y",
+    "perfectionist",
     "cypress",
-    "sonarjs",
+    "jsx-a11y",
     "promise",
-    "sort"
+    "sonarjs"
   ],
   "rules": {
     "no-console": "error",
@@ -90,8 +91,9 @@
       "items": 1,
       "forceSingleLine": false
     }],
-    "sort/imports": [0],
-    "sort/exports": [0]
+    "perfectionist/sort-imports": [0],
+    "perfectionist/sort-exports": [0],
+    "perfectionist/sort-classes": [0]
   },
   "env": {
     "browser": true,

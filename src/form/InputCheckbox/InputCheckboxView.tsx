@@ -14,8 +14,8 @@ import type {
 
 type $OptionalProps = {
   className?: string;
-  description?: string | null;
-  label?: string | $Component<unknown>;
+  description?: null | string;
+  label?: $Component<unknown> | string;
   onChange?: (value: boolean | null) => unknown;
   stringify?: boolean;
   value?: boolean | null;
@@ -76,12 +76,12 @@ class InputCheckboxView extends React.Component<$Props, $State> {
       <p className="mb-0">
         {label}
         {description && (
-        <>
-          <br />
-          <small className="d-block text-muted lh-1">
-            {description}
-          </small>
-        </>
+          <>
+            <br />
+            <small className="d-block text-muted lh-1">
+              {description}
+            </small>
+          </>
         )}
       </p>
     );
@@ -108,8 +108,6 @@ class InputCheckboxView extends React.Component<$Props, $State> {
           <AvInput
             id={id}
             name={stringify === true ? `_${name}` : name}
-            type="checkbox"
-            value={value}
             onClick={() => {
               const newValue = value === null ? true : !value;
 
@@ -118,18 +116,20 @@ class InputCheckboxView extends React.Component<$Props, $State> {
                 value: newValue,
               });
             }}
+            type="checkbox"
+            value={value}
           />
           <span className="fa fa-check" />
           {this.renderLabel()}
         </label>
         {stringify === true && (
-        <AvInput
-          name={name}
-          value={value !== null ? JSON.stringify(value) : undefined}
-          style={{
-            display: 'none',
-          }}
-        />
+          <AvInput
+            name={name}
+            style={{
+              display: 'none',
+            }}
+            value={value !== null ? JSON.stringify(value) : undefined}
+          />
         )}
       </div>
     );

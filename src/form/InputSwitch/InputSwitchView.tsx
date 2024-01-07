@@ -11,7 +11,7 @@ type $OptionalProps = {
   disabled?: boolean;
   label?: string;
   onChange?: (value: boolean) => unknown;
-  size?: 'sm' | 'md' | 'lg',
+  size?: 'lg' | 'md' | 'sm',
   value?: boolean;
 };
 
@@ -72,18 +72,18 @@ class InputSwitchView extends React.Component<$Props, $State> {
       <>
         <div className={`InputSwitch form-check form-switch form-switch-${size || 'md'} ${className || ''}`}>
           <input
-            className="form-check-input"
-            type="checkbox"
-            role="switch"
-            id={id}
             checked={value}
+            className="form-check-input"
+            disabled={disabled}
+            id={id}
             onChange={() => this.setState(
               {
                 value: !value,
               },
               () => onChange && onChange(!value),
             )}
-            disabled={disabled}
+            role="switch"
+            type="checkbox"
           />
           {label && (
             <label
@@ -95,14 +95,14 @@ class InputSwitchView extends React.Component<$Props, $State> {
           )}
         </div>
         <AvInput
-          name={name}
-          type="checkbox"
-          value={value}
           checked={value}
+          disabled={disabled}
+          name={name}
           style={{
             display: 'none',
           }}
-          disabled={disabled}
+          type="checkbox"
+          value={value}
         />
       </>
     );

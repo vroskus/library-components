@@ -11,14 +11,14 @@ import {
 // Types
 type $OptionalProps = {
   className?: string;
-  label?: string;
-  placeholder?: string;
-  value?: number | null;
-  required?: boolean;
   disabled?: boolean;
-  onChange?: (value: number | null) => unknown;
-  min?: number;
+  label?: string;
   max?: number;
+  min?: number;
+  onChange?: (value: null | number) => unknown;
+  placeholder?: string;
+  required?: boolean;
+  value?: null | number;
 };
 
 type $Props = $OptionalProps & {
@@ -26,8 +26,8 @@ type $Props = $OptionalProps & {
 };
 
 type $State = {
-  stringValue: string | null;
-  numberValue: number | null;
+  numberValue: null | number;
+  stringValue: null | string;
 };
 
 class InputNumberView extends React.Component<$Props, $State> {
@@ -74,7 +74,7 @@ class InputNumberView extends React.Component<$Props, $State> {
     }
   }
 
-  setValue(value: string | null): void {
+  setValue(value: null | string): void {
     const {
       onChange,
     } = this.props;
@@ -115,24 +115,28 @@ class InputNumberView extends React.Component<$Props, $State> {
 
     return (
       <FormGroup className={`InputNumber ${className || ''}`}>
-        {label && <Label>{label}</Label>}
+        {label && (
+          <Label>
+            {label}
+          </Label>
+        )}
         <AvInput
-          placeholder={placeholder}
+          disabled={disabled}
+          max={max}
+          min={min}
           name={`_${name}`}
+          onChange={(e) => this.setValue(e.target.value)}
+          placeholder={placeholder}
+          required={required}
           type="number"
           value={stringValue}
-          required={required}
-          disabled={disabled}
-          onChange={(e) => this.setValue(e.target.value)}
-          min={min}
-          max={max}
         />
         <AvInput
           name={name}
-          value={numberValue}
           style={{
             display: 'none',
           }}
+          value={numberValue}
         />
       </FormGroup>
     );

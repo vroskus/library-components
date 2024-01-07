@@ -13,7 +13,7 @@ type $Props = {
   largeImageUrl: string;
   noImageUrl: string;
   smallImageUrl: string;
-  value?: string | null;
+  value?: null | string;
 };
 
 const TdImageView = function ({
@@ -32,15 +32,15 @@ const TdImageView = function ({
       <div className="d-flex align-items-center">
         {value ? (
           <ModalImage
-            small={smallImageUrl}
-            large={largeImageUrl}
             className="img-fluid"
+            large={largeImageUrl}
+            small={smallImageUrl}
           />
         ) : (
           <div>
             <img
-              src={noImageUrl}
               alt=""
+              src={noImageUrl}
             />
           </div>
         )}

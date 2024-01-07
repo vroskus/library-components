@@ -4,6 +4,9 @@ import {
   CardBody,
 } from 'reactstrap';
 
+// Components
+import TitleSubtitle from '../TitleSubtitle';
+
 // Types
 import type {
   $Component,
@@ -11,6 +14,7 @@ import type {
 
 type $OptionalProps = {
   bottomBorder?: boolean;
+  className?: boolean;
   description?: string;
   iconClass?: string;
   rightButtons?: $Component<unknown>;
@@ -23,6 +27,7 @@ type $Props = $OptionalProps & {
 
 const SectionHeaderView = function ({
   bottomBorder,
+  className,
   description,
   iconClass,
   rightButtons,
@@ -30,28 +35,26 @@ const SectionHeaderView = function ({
   titleButton,
 }: $Props): $Component<$Props> {
   return (
-    <CardBody className={`${bottomBorder ? 'border-thin-bottom' : ''} py-2`}>
+    <CardBody className={`${className || ''} ${bottomBorder ? 'border-thin-bottom' : ''} py-2`}>
       <div className="d-flex flex-row">
         <div className="d-flex flex-grow-1 align-items-center">
           <span>
             {titleButton}
           </span>
-          {iconClass && <em className={`fa ${iconClass} mr-2`} />}
+          {iconClass && (
+            <em className={`fa ${iconClass} mr-2`} />
+          )}
           <div>
-            <h4 className="mb-0">
-              {title}
-            </h4>
-            {description && (
-            <small className="d-block text-muted lh-1 mt-1">
-              {description}
-            </small>
-            )}
+            <TitleSubtitle
+              subTitle={description}
+              title={title}
+            />
           </div>
         </div>
         {rightButtons && (
-        <div className="d-flex flex-grow-0 pl-3">
-          {rightButtons}
-        </div>
+          <div className="d-flex flex-grow-0 pl-3">
+            {rightButtons}
+          </div>
         )}
       </div>
     </CardBody>
@@ -60,6 +63,7 @@ const SectionHeaderView = function ({
 
 SectionHeaderView.defaultProps = {
   bottomBorder: undefined,
+  className: undefined,
   description: undefined,
   iconClass: undefined,
   rightButtons: undefined,

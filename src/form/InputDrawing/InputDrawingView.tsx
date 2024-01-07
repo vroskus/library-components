@@ -25,7 +25,7 @@ type $OptionalProps = {
   height?: number;
   label?: string;
   onChange?: (value: string) => unknown;
-  value?: string | null;
+  value?: null | string;
   width?: number;
 };
 
@@ -98,15 +98,21 @@ const InputDrawingView = function ({
 
   return (
     <>
-      {label && <Label>{label}</Label>}
+      {label && (
+        <Label>
+          {label}
+        </Label>
+      )}
       <div
+        className="mb-1"
         style={{
           display: 'flex',
           justifyContent: 'flexWrap',
         }}
-        className="mb-1"
       >
         <div
+          onMouseLeave={handleChangeXML}
+          onTouchEnd={handleChangeXML}
           ref={divRef}
           style={{
             border: '1px solid #eee',
@@ -115,18 +121,16 @@ const InputDrawingView = function ({
             marginRight: 'auto',
             width: width || 420,
           }}
-          onTouchEnd={handleChangeXML}
-          onMouseLeave={handleChangeXML}
         />
       </div>
       <ButtonGroup className="d-flex mb-3">
         <Button
+          active={penColor === color.black}
           className="w-100"
           onClick={() => {
             handlePenWidth(3);
             handleColor(color.black);
           }}
-          active={penColor === color.black}
         >
           <em
             className="fa fa-pen"
@@ -136,12 +140,12 @@ const InputDrawingView = function ({
           />
         </Button>
         <Button
+          active={penColor === color.red}
           className="w-100"
           onClick={() => {
             handlePenWidth(3);
             handleColor(color.red);
           }}
-          active={penColor === color.red}
         >
           <em
             className="fa fa-pen"
@@ -151,12 +155,12 @@ const InputDrawingView = function ({
           />
         </Button>
         <Button
+          active={penColor === color.green}
           className="w-100"
           onClick={() => {
             handlePenWidth(3);
             handleColor(color.green);
           }}
-          active={penColor === color.green}
         >
           <em
             className="fa fa-pen"
@@ -166,12 +170,12 @@ const InputDrawingView = function ({
           />
         </Button>
         <Button
+          active={penColor === color.white}
           className="w-100"
           onClick={() => {
             handlePenWidth(10);
             handleColor(color.white);
           }}
-          active={penColor === color.white}
         >
           <em className="fa fa-eraser" />
         </Button>
@@ -190,10 +194,10 @@ const InputDrawingView = function ({
       </ButtonGroup>
       <AvInput
         name={name}
-        value={xml}
         style={{
           display: 'none',
         }}
+        value={xml}
       />
     </>
   );

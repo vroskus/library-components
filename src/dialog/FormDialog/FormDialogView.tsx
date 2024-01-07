@@ -11,6 +11,9 @@ import {
   AvForm,
 } from 'availity-reactstrap-validation';
 
+// Components
+import TitleSubtitle from '../../common/TitleSubtitle';
+
 // Types
 import type {
   $Children,
@@ -23,18 +26,18 @@ type $OptionalProps = {
   buttonColor?: string;
   onOpened?: () => unknown;
   overflowControl?: boolean;
-  size?: 'sm' | 'lg' | 'xl';
+  size?: 'lg' | 'sm' | 'xl';
 };
 
 type $OwnProps = $OptionalProps & {
-  onAction: (arg0: $Item) => unknown;
   children: $Children;
   fields: $Component<unknown>;
   id: string;
+  labelCloseButton: string;
+  labelSaveButton: string;
+  onAction: (arg0: $Item) => unknown;
   subTitle: string;
   title: string;
-  labelSaveButton: string;
-  labelCloseButton: string;
 };
 
 type $Props = $OwnProps;
@@ -106,13 +109,13 @@ class FormDialogView extends React.Component<$Props, $State> {
       <>
         {this.childrenWithToggleHandler()}
         <Modal
+          backdrop="static"
+          centered
           id={id}
           isOpen={visible}
-          toggle={() => this.toggle()}
-          centered
-          size={size}
           onOpened={onOpened}
-          backdrop="static"
+          size={size}
+          toggle={() => this.toggle()}
         >
           <AvForm
             onValidSubmit={(
@@ -121,28 +124,30 @@ class FormDialogView extends React.Component<$Props, $State> {
             ) => onAction(values) && this.toggle()}
           >
             <ModalHeader>
-              <p className="mb-0">{title}</p>
-              {subTitle && <small>{subTitle}</small>}
+              <TitleSubtitle
+                subTitle={subTitle}
+                title={title}
+              />
             </ModalHeader>
-            <ModalBody style={overflowControl ? {
-              maxHeight: 'calc(100vh - 210px)',
-              overflowY: 'auto',
-            } : {
-            }}
+            <ModalBody
+              style={overflowControl ? {
+                maxHeight: 'calc(100vh - 210px)',
+                overflowY: 'auto',
+              } : undefined}
             >
               {fields}
             </ModalBody>
             <ModalFooter>
               <Button
-                id="dialog-confirm-button"
                 color={buttonColor || 'success'}
+                id="dialog-confirm-button"
                 type="submit"
               >
                 {labelSaveButton}
               </Button>
               <Button
-                id="dialog-close-button"
                 color="secondary"
+                id="dialog-close-button"
                 onClick={() => this.toggle()}
               >
                 {labelCloseButton}
