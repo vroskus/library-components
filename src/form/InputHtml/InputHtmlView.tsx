@@ -14,8 +14,8 @@ import _ from 'lodash';
 
 // Types
 type $OptionalProps = {
-  height?: number;
   label?: string;
+  minHeight?: number;
   onChange?: (value: null | string) => unknown;
   value?: null | string;
 };
@@ -30,8 +30,8 @@ type $State = {
 
 class InputHtmlView extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
-    height: undefined,
     label: undefined,
+    minHeight: undefined,
     onChange: undefined,
     value: undefined,
   };
@@ -79,8 +79,8 @@ class InputHtmlView extends React.Component<$Props, $State> {
 
   render() {
     const {
-      height,
       label,
+      minHeight,
       name,
     } = this.props;
     const {
@@ -97,7 +97,7 @@ class InputHtmlView extends React.Component<$Props, $State> {
         <ReactQuill
           onChange={(newValue) => this.setValue(newValue)}
           style={{
-            height,
+            minHeight,
           }}
           value={value}
         />
