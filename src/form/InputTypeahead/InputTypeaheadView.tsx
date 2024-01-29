@@ -32,6 +32,7 @@ type $OptionalProps = {
   label?: string | void;
   labelKey?: string | void;
   minLength?: number | void;
+  onChange?: (value: null | string | void) => void;
   onOptionSelect?: (option: $Option | void) => (string | void);
   placeholder?: string | void;
   required?: boolean | void;
@@ -55,6 +56,7 @@ class InputTypeaheadView extends React.Component<$Props, $State> {
     label: undefined,
     labelKey: undefined,
     minLength: undefined,
+    onChange: undefined,
     onOptionSelect: undefined,
     placeholder: undefined,
     required: undefined,
@@ -138,6 +140,7 @@ class InputTypeaheadView extends React.Component<$Props, $State> {
       labelKey,
       minLength,
       name,
+      onChange,
       onOptionSelect,
       placeholder,
       required,
@@ -179,6 +182,10 @@ class InputTypeaheadView extends React.Component<$Props, $State> {
                   valueToSet = onOptionSelectValue;
                 }
               }
+            }
+
+            if (onChange) {
+              onChange(valueToSet);
             }
 
             this.setState({
