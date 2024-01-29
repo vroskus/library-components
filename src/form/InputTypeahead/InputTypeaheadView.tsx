@@ -32,7 +32,7 @@ type $OptionalProps = {
   label?: string | void;
   labelKey?: string | void;
   minLength?: number | void;
-  onChange?: (value: null | string | void) => void;
+  onChange?: (value: string) => void;
   onOptionSelect?: (option: $Option | void) => (string | void);
   placeholder?: string | void;
   required?: boolean | void;
@@ -184,10 +184,6 @@ class InputTypeaheadView extends React.Component<$Props, $State> {
               }
             }
 
-            if (onChange) {
-              onChange(valueToSet);
-            }
-
             this.setState({
               value: valueToSet,
             });
@@ -196,6 +192,10 @@ class InputTypeaheadView extends React.Component<$Props, $State> {
             await this.setStateAsync({
               loading: true,
             });
+
+            if (onChange) {
+              onChange(query);
+            }
 
             const foundOptions = await getOptions(query);
 
