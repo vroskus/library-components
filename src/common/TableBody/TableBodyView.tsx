@@ -8,6 +8,7 @@ import type {
 } from '../../types';
 
 type $OptionalProps = {
+  appending?: boolean;
   className?: number;
   loadingLinesQuantity?: number;
 };
@@ -19,7 +20,16 @@ type $Props = $OptionalProps & {
   loading: boolean;
 };
 
+const loadingLines = (qty: number) => ([...Array(qty || 15)].map((e, i) => (
+  <tr key={`row_${String(i)}`}>
+    <td colSpan={100}>
+      <div className="TableBody-empty" />
+    </td>
+  </tr>
+)));
+
 const TableBodyView = function ({
+  appending,
   children,
   className,
   empty,
@@ -30,13 +40,7 @@ const TableBodyView = function ({
   if (loading === true) {
     return (
       <tbody className="TableBody">
-        {[...Array(loadingLinesQuantity || 15)].map((e, i) => (
-          <tr key={`row_${String(i)}`}>
-            <td colSpan={100}>
-              <div className="TableBody-empty" />
-            </td>
-          </tr>
-        ))}
+        {loadingLines(loadingLinesQuantity)}
       </tbody>
     );
   }
@@ -58,11 +62,13 @@ const TableBodyView = function ({
   return (
     <tbody className={`TableBody ${className || ''}`}>
       {children}
+      {appending && loadingLines(loadingLinesQuantity)}
     </tbody>
   );
 };
 
 TableBodyView.defaultProps = {
+  appending: undefined,
   className: undefined,
   loadingLinesQuantity: undefined,
 };
