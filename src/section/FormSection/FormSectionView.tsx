@@ -235,13 +235,15 @@ class FormSectionView extends React.Component<$Props, $State> {
         className="FormSection"
         id={id}
       >
-        <SectionHeader
-          bottomBorder
-          description={headerDescription}
-          iconClass={headerIconClass}
-          rightButtons={headerButtons}
-          title={headerTitle || ''}
-        />
+        {headerTitle && (
+          <SectionHeader
+            bottomBorder
+            description={headerDescription}
+            iconClass={headerIconClass}
+            rightButtons={headerButtons}
+            title={headerTitle}
+          />
+        )}
         {this.renderContent()}
         {confirm && this.renderConfirmDialog()}
       </Card>
