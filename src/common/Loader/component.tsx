@@ -32,20 +32,23 @@ class Component extends React.Component<$Props> {
       size,
     } = this.props;
 
-    let sizeClassName = '';
-    let style;
+    let sizeClassName = 'py-3';
+    let style = {
+      height: '3rem',
+      width: '3rem',
+    };
 
-    if (size === 'lg') {
-      sizeClassName = 'py-5';
+    if (size === 'sm') {
+      sizeClassName = 'py-0';
       style = {
-        height: '3rem',
-        width: '3rem',
+        height: '2rem',
+        width: '2rem',
       };
     }
 
     return (
       <div
-        className={`d-flex align-items-center justify-content-center w-100 ${sizeClassName}`}
+        className={`Loader-spinner d-flex align-items-center justify-content-center w-100 ${sizeClassName}`}
       >
         <Spinner
           color="primary"
@@ -68,11 +71,13 @@ class Component extends React.Component<$Props> {
     return (
       <div
         className={`${componentClassName} ${loading === true ? 'position-relative' : ''}`}
-        style={style}
       >
         {children}
         {loading === true && (
-          <div className="d-flex align-items-center position-absolute h-100">
+          <div
+            className="Loader-overlay d-flex align-items-center position-absolute top-0 left-0 right-0 bottom-0 w-100"
+            style={style}
+          >
             {this.renderSpinner()}
           </div>
         )}
