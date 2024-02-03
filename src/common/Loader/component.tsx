@@ -27,7 +27,7 @@ class Component extends React.Component<$Props> {
     size: undefined,
   };
 
-  renderSpinner(className: string) {
+  renderSpinner() {
     const {
       size,
     } = this.props;
@@ -44,7 +44,9 @@ class Component extends React.Component<$Props> {
     }
 
     return (
-      <div className={`d-flex justify-content-center w-100 ${sizeClassName} ${className}`}>
+      <div
+        className={`d-flex align-items-center justify-content-center w-100 ${sizeClassName}`}
+      >
         <Spinner
           color="primary"
           style={style}
@@ -69,7 +71,11 @@ class Component extends React.Component<$Props> {
         style={style}
       >
         {children}
-        {loading === true && this.renderSpinner('position-absolute top-50 start-50 translate-middle')}
+        {loading === true && (
+          <div className="d-flex align-items-center position-absolute h-100">
+            {this.renderSpinner()}
+          </div>
+        )}
       </div>
     );
   }
@@ -82,7 +88,7 @@ class Component extends React.Component<$Props> {
 
     return (loading === true ? (
       <div className={componentClassName}>
-        {this.renderSpinner('')}
+        {this.renderSpinner()}
       </div>
     ) : children);
   }
