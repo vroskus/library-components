@@ -66,6 +66,10 @@ class Component extends React.Component<$Props> {
 
     const style = {
       backgroundColor: loading === true ? 'rgba(255, 255, 255, 0.5)' : 'transparent',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      top: 0,
     };
 
     return (
@@ -75,7 +79,7 @@ class Component extends React.Component<$Props> {
         {children}
         {loading === true && (
           <div
-            className="Loader-overlay d-flex align-items-center position-absolute top-0 left-0 right-0 bottom-0 w-100"
+            className="Loader-overlay d-flex align-items-center position-absolute w-100"
             style={style}
           >
             {this.renderSpinner()}
