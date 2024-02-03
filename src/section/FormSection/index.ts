@@ -1,3 +1,3 @@
-import FormSectionView from './FormSectionView';
+import Component from './component';
 
-export default FormSectionView;
+export default Component;

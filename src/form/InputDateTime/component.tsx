@@ -40,7 +40,7 @@ type $State = {
   stringValue?: null | string;
 };
 
-class InputDateTimeView extends React.Component<$Props, $State> {
+class Component extends React.Component<$Props, $State> {
   format: string;
 
   static defaultProps: $OptionalProps = {
@@ -249,4 +249,4 @@ class InputDateTimeView extends React.Component<$Props, $State> {
   }
 }
 
-export default InputDateTimeView;
+export default Component;

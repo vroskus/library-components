@@ -33,15 +33,15 @@ type $Props = $OptionalProps & {
   name: string;
 };
 
-const color = {
-  black: 'black',
-  green: 'green',
-  red: 'red',
-  white: 'white',
-};
+enum Color {
+  black = 'black',
+  green = 'green',
+  red = 'red',
+  white = 'white',
+}
 
 /* eslint-disable complexity */
-const InputDrawingView = function ({
+const Component = function ({
   height,
   label,
   name,
@@ -57,22 +57,22 @@ const InputDrawingView = function ({
     instance,
     undo,
   }] = useSvgDrawing({
-    penColor: color.black,
+    penColor: 'black',
     penWidth: 3,
   });
 
   const [xml, setXml] = useState('');
-  const [penColor, setPenColor] = useState(color.black);
+  const [color, setColor] = useState(Color.black);
 
-  const handleColor = useCallback(
+  const setPenColor = useCallback(
     (v) => {
       changePenColor(v);
-      setPenColor(v);
+      setColor(v);
     },
-    [changePenColor, setPenColor],
+    [changePenColor, setColor],
   );
 
-  const handlePenWidth = useCallback(
+  const setPenWidth = useCallback(
     (v) => {
       changePenWidth(v);
     },
@@ -96,6 +96,14 @@ const InputDrawingView = function ({
     instance.parseSVGString(value);
   }
 
+  const style = {
+    border: '1px solid #eee',
+    height: height || 420,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: width || 420,
+  };
+
   return (
     <>
       {label && (
@@ -114,67 +122,61 @@ const InputDrawingView = function ({
           onMouseLeave={handleChangeXML}
           onTouchEnd={handleChangeXML}
           ref={divRef}
-          style={{
-            border: '1px solid #eee',
-            height: height || 420,
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            width: width || 420,
-          }}
+          style={style}
         />
       </div>
       <ButtonGroup className="d-flex mb-3">
         <Button
-          active={penColor === color.black}
+          active={color === Color.black}
           className="w-100"
           onClick={() => {
-            handlePenWidth(3);
-            handleColor(color.black);
+            setPenWidth(3);
+            setPenColor(Color.black);
           }}
         >
           <em
             className="fa fa-pen"
             style={{
-              color: color.black,
+              color: Color.black,
             }}
           />
         </Button>
         <Button
-          active={penColor === color.red}
+          active={color === Color.red}
           className="w-100"
           onClick={() => {
-            handlePenWidth(3);
-            handleColor(color.red);
+            setPenWidth(3);
+            setPenColor(Color.red);
           }}
         >
           <em
             className="fa fa-pen"
             style={{
-              color: color.red,
+              color: Color.red,
             }}
           />
         </Button>
         <Button
-          active={penColor === color.green}
+          active={color === Color.green}
           className="w-100"
           onClick={() => {
-            handlePenWidth(3);
-            handleColor(color.green);
+            setPenWidth(3);
+            setPenColor(Color.green);
           }}
         >
           <em
             className="fa fa-pen"
             style={{
-              color: color.green,
+              color: Color.green,
             }}
           />
         </Button>
         <Button
-          active={penColor === color.white}
+          active={color === Color.white}
           className="w-100"
           onClick={() => {
-            handlePenWidth(10);
-            handleColor(color.white);
+            setPenWidth(10);
+            setPenColor(Color.white);
           }}
         >
           <em className="fa fa-eraser" />
@@ -203,7 +205,7 @@ const InputDrawingView = function ({
   );
 };
 
-InputDrawingView.defaultProps = {
+Component.defaultProps = {
   height: undefined,
   label: undefined,
   onChange: undefined,
@@ -211,4 +213,4 @@ InputDrawingView.defaultProps = {
   width: undefined,
 };
 
-export default InputDrawingView;
+export default Component;

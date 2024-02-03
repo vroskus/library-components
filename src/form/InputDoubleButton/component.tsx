@@ -28,7 +28,7 @@ type $State = {
   value: boolean;
 };
 
-class InputDoubleButtonView extends React.Component<$Props, $State> {
+class Component extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
     className: undefined,
     disabled: undefined,
@@ -137,4 +137,4 @@ class InputDoubleButtonView extends React.Component<$Props, $State> {
   }
 }
 
-export default InputDoubleButtonView;
+export default Component;

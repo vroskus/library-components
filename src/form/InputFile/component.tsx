@@ -42,7 +42,7 @@ type $State = {
   value?: null | string;
 };
 
-class InputFileView extends React.Component<$Props, $State> {
+class Component extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
     className: undefined,
     disabled: undefined,
@@ -364,4 +364,4 @@ class InputFileView extends React.Component<$Props, $State> {
   }
 }
 
-export default InputFileView;
+export default Component;

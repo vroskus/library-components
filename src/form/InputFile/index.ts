@@ -1,4 +1,4 @@
-import InputFileView from './InputFileView';
-import './InputFile.css';
+import Component from './component';
+import './styles.css';
 
-export default InputFileView;
+export default Component;

@@ -1,3 +1,3 @@
-import TitleSubtitleView from './TitleSubtitleView';
+import Component from './component';
 
-export default TitleSubtitleView;
+export default Component;

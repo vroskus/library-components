@@ -41,7 +41,7 @@ type $State = {
   visible: boolean;
 };
 
-class CommonDialogView extends React.Component<$Props, $State> {
+class Component extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
     children: undefined,
     closeAction: undefined,
@@ -108,6 +108,7 @@ class CommonDialogView extends React.Component<$Props, $State> {
         {!instant && this.childrenWithToggleHandler()}
         <Modal
           centered
+          className="CommonDialog"
           id={id}
           isOpen={visible}
           onOpened={onOpened}
@@ -157,4 +158,4 @@ class CommonDialogView extends React.Component<$Props, $State> {
   }
 }
 
-export default CommonDialogView;
+export default Component;

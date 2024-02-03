@@ -23,7 +23,7 @@ type $State = {
   value: boolean;
 };
 
-class InputSwitchView extends React.Component<$Props, $State> {
+class Component extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
     className: undefined,
     disabled: undefined,
@@ -109,4 +109,4 @@ class InputSwitchView extends React.Component<$Props, $State> {
   }
 }
 
-export default InputSwitchView;
+export default Component;

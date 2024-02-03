@@ -1,3 +1,3 @@
-import FormDialogView from './FormDialogView';
+import Component from './component';
 
-export default FormDialogView;
+export default Component;

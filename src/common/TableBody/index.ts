@@ -1,4 +1,4 @@
-import TableBodyView from './TableBodyView';
-import './TableBody.css';
+import Component from './component';
+import './styles.css';
 
-export default TableBodyView;
+export default Component;

@@ -19,7 +19,7 @@ type $OptionalProps = {
 
 type $Props = $OptionalProps;
 
-class TdDateView extends React.Component<$Props> {
+class Component extends React.Component<$Props> {
   static defaultProps: $OptionalProps = {
     countdown: undefined,
     duration: undefined,
@@ -95,4 +95,4 @@ class TdDateView extends React.Component<$Props> {
   }
 }
 
-export default TdDateView;
+export default Component;

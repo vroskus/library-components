@@ -1,3 +1,3 @@
-import InputDoubleButtonView from './InputDoubleButtonView';
+import Component from './component';
 
-export default InputDoubleButtonView;
+export default Component;

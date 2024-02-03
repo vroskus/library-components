@@ -1,3 +1,3 @@
-import DeleteDialogView from './DeleteDialogView';
+import Component from './component';
 
-export default DeleteDialogView;
+export default Component;

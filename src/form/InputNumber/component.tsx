@@ -30,7 +30,7 @@ type $State = {
   stringValue: null | string;
 };
 
-class InputNumberView extends React.Component<$Props, $State> {
+class Component extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
     className: undefined,
     disabled: undefined,
@@ -143,4 +143,4 @@ class InputNumberView extends React.Component<$Props, $State> {
   }
 }
 
-export default InputNumberView;
+export default Component;

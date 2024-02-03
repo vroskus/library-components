@@ -1,3 +1,3 @@
-import InputDrawingView from './InputDrawingView';
+import Component from './component';
 
-export default InputDrawingView;
+export default Component;

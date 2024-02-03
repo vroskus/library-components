@@ -1,4 +1,4 @@
-import InputSwitchView from './InputSwitchView';
-import './InputSwitch.css';
+import Component from './component';
+import './styles.css';
 
-export default InputSwitchView;
+export default Component;

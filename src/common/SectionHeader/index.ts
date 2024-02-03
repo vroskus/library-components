@@ -1,3 +1,3 @@
-import SectionHeaderView from './SectionHeaderView';
+import Component from './component';
 
-export default SectionHeaderView;
+export default Component;

@@ -28,7 +28,7 @@ const loadingLines = (qty: number) => ([...Array(qty || 15)].map((e, i) => (
   </tr>
 )));
 
-const TableBodyView = function ({
+const Component = function ({
   appending,
   children,
   className,
@@ -67,10 +67,10 @@ const TableBodyView = function ({
   );
 };
 
-TableBodyView.defaultProps = {
+Component.defaultProps = {
   appending: undefined,
   className: undefined,
   loadingLinesQuantity: undefined,
 };
 
-export default TableBodyView;
+export default Component;

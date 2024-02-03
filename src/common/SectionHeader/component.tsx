@@ -25,7 +25,7 @@ type $Props = $OptionalProps & {
   title: string;
 };
 
-const SectionHeaderView = function ({
+const Component = function ({
   bottomBorder,
   className,
   description,
@@ -35,7 +35,7 @@ const SectionHeaderView = function ({
   titleButton,
 }: $Props): $Component<$Props> {
   return (
-    <CardBody className={`${className || ''} ${bottomBorder ? 'border-thin-bottom' : ''} py-2`}>
+    <CardBody className={`SectionHeader ${className || ''} ${bottomBorder ? 'border-thin-bottom' : ''} py-2`}>
       <div className="d-flex flex-row">
         <div className="d-flex flex-grow-1 align-items-center">
           <span>
@@ -61,7 +61,7 @@ const SectionHeaderView = function ({
   );
 };
 
-SectionHeaderView.defaultProps = {
+Component.defaultProps = {
   bottomBorder: undefined,
   className: undefined,
   description: undefined,
@@ -70,4 +70,4 @@ SectionHeaderView.defaultProps = {
   titleButton: undefined,
 };
 
-export default SectionHeaderView;
+export default Component;

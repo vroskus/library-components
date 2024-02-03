@@ -29,7 +29,7 @@ type $State = {
   value: boolean | null;
 };
 
-class InputCheckboxView extends React.Component<$Props, $State> {
+class Component extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
     className: undefined,
     description: undefined,
@@ -136,4 +136,4 @@ class InputCheckboxView extends React.Component<$Props, $State> {
   }
 }
 
-export default InputCheckboxView;
+export default Component;

@@ -1,3 +1,3 @@
-import LoaderView from './LoaderView';
+import Component from './component';
 
-export default LoaderView;
+export default Component;

@@ -16,7 +16,7 @@ type $Props = {
   value?: null | string;
 };
 
-const TdImageView = function ({
+const Component = function ({
   largeImageUrl,
   noImageUrl,
   smallImageUrl,
@@ -49,8 +49,8 @@ const TdImageView = function ({
   );
 };
 
-TdImageView.defaultProps = {
+Component.defaultProps = {
   value: undefined,
 };
 
-export default TdImageView;
+export default Component;

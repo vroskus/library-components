@@ -1,4 +1,4 @@
-import TableHeadView from './TableHeadView';
-import './TableHead.css';
+import Component from './component';
+import './styles.css';
 
-export default TableHeadView;
+export default Component;

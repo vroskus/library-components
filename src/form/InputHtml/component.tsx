@@ -28,7 +28,7 @@ type $State = {
   value: null | string;
 };
 
-class InputHtmlView extends React.Component<$Props, $State> {
+class Component extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
     label: undefined,
     minHeight: undefined,
@@ -113,4 +113,4 @@ class InputHtmlView extends React.Component<$Props, $State> {
   }
 }
 
-export default InputHtmlView;
+export default Component;

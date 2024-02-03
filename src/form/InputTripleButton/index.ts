@@ -1,3 +1,3 @@
-import InputTripleButtonView from './InputTripleButtonView';
+import Component from './component';
 
-export default InputTripleButtonView;
+export default Component;

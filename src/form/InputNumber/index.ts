@@ -1,3 +1,3 @@
-import InputNumberView from './InputNumberView';
+import Component from './component';
 
-export default InputNumberView;
+export default Component;

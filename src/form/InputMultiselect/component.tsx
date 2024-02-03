@@ -35,7 +35,7 @@ type $State = {
   value: Array<string>;
 };
 
-class InputMultiselectView extends React.Component<$Props, $State> {
+class Component extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
     label: undefined,
     labelKey: undefined,
@@ -130,4 +130,4 @@ class InputMultiselectView extends React.Component<$Props, $State> {
   }
 }
 
-export default InputMultiselectView;
+export default Component;

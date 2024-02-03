@@ -26,7 +26,7 @@ type $State = {
   value: number;
 };
 
-class InputTripleButtonView extends React.Component<$Props, $State> {
+class Component extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
     disabled: undefined,
     onChange: undefined,
@@ -124,4 +124,4 @@ class InputTripleButtonView extends React.Component<$Props, $State> {
   }
 }
 
-export default InputTripleButtonView;
+export default Component;

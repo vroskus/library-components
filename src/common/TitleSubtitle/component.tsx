@@ -14,7 +14,7 @@ type $Props = $OptionalProps & {
   title: string;
 };
 
-const TitleSubtitleView = function ({
+const Component = function ({
   subTitle,
   title,
 }: $Props): $Component<$Props> {
@@ -32,8 +32,8 @@ const TitleSubtitleView = function ({
   );
 };
 
-TitleSubtitleView.defaultProps = {
+Component.defaultProps = {
   subTitle: undefined,
 };
 
-export default TitleSubtitleView;
+export default Component;

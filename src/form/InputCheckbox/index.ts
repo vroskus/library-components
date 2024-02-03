@@ -1,3 +1,3 @@
-import InputCheckboxView from './InputCheckboxView';
+import Component from './component';
 
-export default InputCheckboxView;
+export default Component;

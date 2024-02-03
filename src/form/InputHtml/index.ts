@@ -1,5 +1,5 @@
-import InputHtmlView from './InputHtmlView';
-import './InputHtml.css';
+import Component from './component';
 import 'react-quill/dist/quill.snow.css';
+import './styles.css';
 
-export default InputHtmlView;
+export default Component;

@@ -1,3 +1,3 @@
-import CommonDialogView from './CommonDialogView';
+import Component from './component';
 
-export default CommonDialogView;
+export default Component;

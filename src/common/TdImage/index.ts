@@ -1,4 +1,4 @@
-import TdImageView from './TdImageView';
-import './TdImage.css';
+import Component from './component';
+import './styles.css';
 
-export default TdImageView;
+export default Component;

@@ -22,7 +22,7 @@ type $State = {
   reverse: boolean;
 };
 
-class TableHeadView extends React.Component<$Props, $State> {
+class Component extends React.Component<$Props, $State> {
   constructor(props: $Props) {
     super(props);
 
@@ -144,4 +144,4 @@ class TableHeadView extends React.Component<$Props, $State> {
   }
 }
 
-export default TableHeadView;
+export default Component;

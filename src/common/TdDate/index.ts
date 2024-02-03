@@ -1,4 +1,4 @@
-import TdDateView from './TdDateView';
-import './TdDate.css';
+import Component from './component';
+import './styles.css';
 
-export default TdDateView;
+export default Component;

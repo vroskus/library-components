@@ -1,3 +1,3 @@
-import InputMultiselectView from './InputMultiselectView';
+import Component from './component';
 
-export default InputMultiselectView;
+export default Component;

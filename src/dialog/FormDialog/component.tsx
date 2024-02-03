@@ -7,6 +7,9 @@ import {
   ModalFooter,
   ModalHeader,
 } from 'reactstrap';
+import {
+  AvForm,
+} from 'availity-reactstrap-validation';
 
 // Components
 import TitleSubtitle from '../../common/TitleSubtitle';
@@ -17,19 +20,22 @@ import type {
   $Component,
 } from '../../types';
 
+type $Item = Record<string, unknown>;
+
 type $OptionalProps = {
-  buttonTitle?: string;
+  buttonColor?: string;
   onOpened?: () => unknown;
+  overflowControl?: boolean;
   size?: 'lg' | 'sm' | 'xl';
 };
 
 type $OwnProps = $OptionalProps & {
   children: $Children;
-  content: $Component<unknown> | string;
+  fields: $Component<unknown>;
   id: string;
   labelCloseButton: string;
-  labelDeleteButton: string;
-  onAction: () => unknown;
+  labelSaveButton: string;
+  onAction: (arg0: $Item) => unknown;
   subTitle: string;
   title: string;
 };
@@ -40,10 +46,11 @@ type $State = {
   visible: boolean;
 };
 
-class DeleteDialogView extends React.Component<$Props, $State> {
+class Component extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
-    buttonTitle: undefined,
+    buttonColor: undefined,
     onOpened: undefined,
+    overflowControl: undefined,
     size: undefined,
   };
 
@@ -82,13 +89,14 @@ class DeleteDialogView extends React.Component<$Props, $State> {
 
   render() {
     const {
-      buttonTitle,
-      content,
+      buttonColor,
+      fields,
       id,
       labelCloseButton,
-      labelDeleteButton,
+      labelSaveButton,
       onAction,
       onOpened,
+      overflowControl,
       size,
       subTitle,
       title,
@@ -101,42 +109,56 @@ class DeleteDialogView extends React.Component<$Props, $State> {
       <>
         {this.childrenWithToggleHandler()}
         <Modal
+          backdrop="static"
           centered
+          className="FormDialog"
           id={id}
           isOpen={visible}
           onOpened={onOpened}
           size={size}
           toggle={() => this.toggle()}
         >
-          <ModalHeader>
-            <TitleSubtitle
-              subTitle={subTitle}
-              title={title}
-            />
-          </ModalHeader>
-          <ModalBody>
-            {content}
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              color="danger"
-              id="dialog-confirm-button"
-              onClick={() => onAction() && this.toggle()}
+          <AvForm
+            onValidSubmit={(
+              event: Event,
+              values: $Item,
+            ) => onAction(values) && this.toggle()}
+          >
+            <ModalHeader>
+              <TitleSubtitle
+                subTitle={subTitle}
+                title={title}
+              />
+            </ModalHeader>
+            <ModalBody
+              style={overflowControl ? {
+                maxHeight: 'calc(100vh - 210px)',
+                overflowY: 'auto',
+              } : undefined}
             >
-              {buttonTitle || labelDeleteButton}
-            </Button>
-            <Button
-              color="secondary"
-              id="dialog-close-button"
-              onClick={() => this.toggle()}
-            >
-              {labelCloseButton}
-            </Button>
-          </ModalFooter>
+              {fields}
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                color={buttonColor || 'success'}
+                id="dialog-confirm-button"
+                type="submit"
+              >
+                {labelSaveButton}
+              </Button>
+              <Button
+                color="secondary"
+                id="dialog-close-button"
+                onClick={() => this.toggle()}
+              >
+                {labelCloseButton}
+              </Button>
+            </ModalFooter>
+          </AvForm>
         </Modal>
       </>
     );
   }
 }
 
-export default DeleteDialogView;
+export default Component;

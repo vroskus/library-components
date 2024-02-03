@@ -54,7 +54,7 @@ type $State = {
   confirmItem: $Item | null;
 };
 
-class FormSectionView extends React.Component<$Props, $State> {
+class Component extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
     buttonColor: undefined,
     changed: undefined,
@@ -251,4 +251,4 @@ class FormSectionView extends React.Component<$Props, $State> {
   }
 }
 
-export default FormSectionView;
+export default Component;

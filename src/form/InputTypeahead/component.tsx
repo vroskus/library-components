@@ -50,7 +50,7 @@ type $State = {
   value?: null | string | void;
 };
 
-class InputTypeaheadView extends React.Component<$Props, $State> {
+class Component extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
     className: undefined,
     label: undefined,
@@ -239,4 +239,4 @@ class InputTypeaheadView extends React.Component<$Props, $State> {
   }
 }
 
-export default InputTypeaheadView;
+export default Component;
