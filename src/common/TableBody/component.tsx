@@ -20,13 +20,49 @@ type $Props = $OptionalProps & {
   loading: boolean;
 };
 
-const loadingLines = (qty: number) => ([...Array(qty || 15)].map((e, i) => (
-  <tr key={`row_${String(i)}`}>
-    <td colSpan={100}>
-      <div className="TableBody-empty" />
-    </td>
-  </tr>
-)));
+const LoadingLines = function ({
+  qty,
+}: {
+  qty: number;
+}) {
+  return ([...Array(qty || 15)].map((e, i) => (
+    <tr key={`row_${String(i)}`}>
+      <td colSpan={100}>
+        <div className="TableBody-empty" />
+      </td>
+    </tr>
+  )));
+};
+
+const Empty = function ({
+  labelEmptyList,
+}: {
+  labelEmptyList: string;
+}) {
+  return (
+    <tr>
+      <td colSpan={100}>
+        <div className="text-muted text-center p-3">
+          {labelEmptyList}
+        </div>
+      </td>
+    </tr>
+  );
+};
+
+const Content = function ({
+  children,
+  empty,
+  labelEmptyList,
+}: {
+  children: $Children;
+  empty: boolean;
+  labelEmptyList: string;
+}) {
+  return (empty === true ? (
+    <Empty labelEmptyList={labelEmptyList} />
+  ) : children);
+};
 
 const Component = function ({
   appending,
@@ -37,32 +73,23 @@ const Component = function ({
   loading,
   loadingLinesQuantity,
 }: $Props): $Component<$Props> {
-  if (loading === true) {
-    return (
-      <tbody className="TableBody">
-        {loadingLines(loadingLinesQuantity)}
-      </tbody>
-    );
-  }
-
-  if (empty === true) {
-    return (
-      <tbody className="TableBody">
-        <tr>
-          <td colSpan={100}>
-            <div className="text-muted text-center p-3">
-              {labelEmptyList}
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    );
-  }
-
   return (
     <tbody className={`TableBody ${className || ''}`}>
-      {children}
-      {appending && loadingLines(loadingLinesQuantity)}
+      {loading === true ? (
+        <LoadingLines qty={loadingLinesQuantity} />
+      ) : (
+        <>
+          <Content
+            empty={empty === true && appending === false}
+            labelEmptyList={labelEmptyList}
+          >
+            {children}
+          </Content>
+          {appending === true && (
+            <LoadingLines qty={loadingLinesQuantity} />
+          )}
+        </>
+      )}
     </tbody>
   );
 };
