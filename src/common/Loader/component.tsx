@@ -70,6 +70,7 @@ class Component extends React.Component<$Props> {
       left: 0,
       right: 0,
       top: 0,
+      zIndex: 9,
     };
 
     return (

@@ -24,6 +24,7 @@ type $Item = Record<string, unknown>;
 
 type $OptionalProps = {
   buttonColor?: string;
+  leftButtons?: $Component<unknown>;
   onOpened?: () => unknown;
   overflowControl?: boolean;
   size?: 'lg' | 'sm' | 'xl';
@@ -49,6 +50,7 @@ type $State = {
 class Component extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
     buttonColor: undefined,
+    leftButtons: undefined,
     onOpened: undefined,
     overflowControl: undefined,
     size: undefined,
@@ -94,6 +96,7 @@ class Component extends React.Component<$Props, $State> {
       id,
       labelCloseButton,
       labelSaveButton,
+      leftButtons,
       onAction,
       onOpened,
       overflowControl,
@@ -139,20 +142,27 @@ class Component extends React.Component<$Props, $State> {
               {fields}
             </ModalBody>
             <ModalFooter>
-              <Button
-                color={buttonColor || 'success'}
-                id="dialog-confirm-button"
-                type="submit"
-              >
-                {labelSaveButton}
-              </Button>
-              <Button
-                color="secondary"
-                id="dialog-close-button"
-                onClick={() => this.toggle()}
-              >
-                {labelCloseButton}
-              </Button>
+              {leftButtons && (
+                <div className="mr-auto">
+                  {leftButtons}
+                </div>
+              )}
+              <div>
+                <Button
+                  color={buttonColor || 'success'}
+                  id="dialog-confirm-button"
+                  type="submit"
+                >
+                  {labelSaveButton}
+                </Button>
+                <Button
+                  color="secondary"
+                  id="dialog-close-button"
+                  onClick={() => this.toggle()}
+                >
+                  {labelCloseButton}
+                </Button>
+              </div>
             </ModalFooter>
           </AvForm>
         </Modal>

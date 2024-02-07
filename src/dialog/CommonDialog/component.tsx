@@ -21,6 +21,7 @@ type $OptionalProps = {
   children?: $Children;
   closeAction?: () => unknown;
   instant?: boolean;
+  leftButtons?: $Component<unknown>;
   onAction?: () => unknown;
   onOpened?: () => unknown;
   size?: 'lg' | 'sm' | 'xl';
@@ -46,6 +47,7 @@ class Component extends React.Component<$Props, $State> {
     children: undefined,
     closeAction: undefined,
     instant: undefined,
+    leftButtons: undefined,
     onAction: undefined,
     onOpened: undefined,
     size: undefined,
@@ -93,6 +95,7 @@ class Component extends React.Component<$Props, $State> {
       instant,
       labelCloseButton,
       labelConfirmButton,
+      leftButtons,
       onAction,
       onOpened,
       size,
@@ -125,32 +128,39 @@ class Component extends React.Component<$Props, $State> {
             {content}
           </ModalBody>
           <ModalFooter>
-            {onAction && (
+            {leftButtons && (
+              <div className="mr-auto">
+                {leftButtons}
+              </div>
+            )}
+            <div>
+              {onAction && (
+                <Button
+                  color="success"
+                  id="dialog-confirm-button"
+                  onClick={() => {
+                    onAction();
+
+                    this.toggle();
+                  }}
+                >
+                  {labelConfirmButton}
+                </Button>
+              )}
               <Button
-                color="success"
-                id="dialog-confirm-button"
+                color="secondary"
+                id="dialog-close-button"
                 onClick={() => {
-                  onAction();
+                  if (closeAction) {
+                    closeAction();
+                  }
 
                   this.toggle();
                 }}
               >
-                {labelConfirmButton}
+                {labelCloseButton}
               </Button>
-            )}
-            <Button
-              color="secondary"
-              id="dialog-close-button"
-              onClick={() => {
-                if (closeAction) {
-                  closeAction();
-                }
-
-                this.toggle();
-              }}
-            >
-              {labelCloseButton}
-            </Button>
+            </div>
           </ModalFooter>
         </Modal>
       </>
