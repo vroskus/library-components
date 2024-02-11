@@ -149,6 +149,7 @@ class Component extends React.Component<$Props, $State> {
               )}
               <div>
                 <Button
+                  className="mr-1"
                   color={buttonColor || 'success'}
                   id="dialog-confirm-button"
                   type="submit"

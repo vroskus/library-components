@@ -136,6 +136,7 @@ class Component extends React.Component<$Props, $State> {
             <div>
               {onAction && (
                 <Button
+                  className="mr-1"
                   color="success"
                   id="dialog-confirm-button"
                   onClick={() => {
