@@ -17,6 +17,7 @@ import momentTimezone from 'moment-timezone';
 
 // Types
 type $OptionalProps = {
+  className?: string;
   disabled?: boolean;
   format?: string;
   label?: string;
@@ -44,6 +45,7 @@ class Component extends React.Component<$Props, $State> {
   format: string;
 
   static defaultProps: $OptionalProps = {
+    className: undefined,
     disabled: undefined,
     format: undefined,
     label: undefined,
@@ -176,6 +178,7 @@ class Component extends React.Component<$Props, $State> {
 
   renderInput(props: unknown, openCalendar: () => unknown) {
     const {
+      className,
       disabled,
       label,
       labelOpenCalendar,
@@ -188,7 +191,7 @@ class Component extends React.Component<$Props, $State> {
     } = this.state;
 
     return (
-      <FormGroup className="InputDateTime">
+      <FormGroup className={`InputDateTime ${className || ''}`}>
         {label && (
           <Label>
             {label}

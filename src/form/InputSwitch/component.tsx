@@ -70,7 +70,7 @@ class Component extends React.Component<$Props, $State> {
 
     return (
       <>
-        <div className={`InputSwitch form-check form-switch form-switch-${size || 'md'} ${className || ''}`}>
+        <div className={`InputSwitch form-check form-switch form-switch-${size || 'md'} mr-2 ${className || ''}`}>
           <input
             checked={value}
             className="form-check-input"
