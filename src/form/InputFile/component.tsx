@@ -15,8 +15,25 @@ import ModalImage from 'react-modal-image';
 // Helpers
 import _ from 'lodash';
 
+// Enums
+const inputAccept = {
+  image: [
+    'image/png',
+    'image/gif',
+    'image/jpeg',
+  ],
+  pdf: [
+    'application/pdf',
+  ],
+  word: [
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  ],
+};
+
 // Types
 type $OptionalProps = {
+  accept?: Array<keyof typeof inputAccept>;
   className?: string;
   disabled?: boolean;
   imageThumbDirUrl?: string;
@@ -44,6 +61,7 @@ type $State = {
 
 class Component extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
+    accept: undefined,
     className: undefined,
     disabled: undefined,
     imageThumbDirUrl: undefined,
@@ -176,7 +194,7 @@ class Component extends React.Component<$Props, $State> {
 
     return (
       <AvInput
-        accept="image/png,image/gif,image/jpeg"
+        accept={inputAccept.image.join(',')}
         disabled={disabled}
         invalid={error !== null}
         name={`_${name}`}
@@ -224,6 +242,7 @@ class Component extends React.Component<$Props, $State> {
 
   renderFileInput() {
     const {
+      accept,
       className,
       disabled,
       name,
@@ -234,9 +253,22 @@ class Component extends React.Component<$Props, $State> {
       value,
     } = this.state;
 
+    let acceptStack = [];
+
+    if (accept) {
+      accept.forEach((i) => {
+        acceptStack = [
+          ...acceptStack,
+          ...inputAccept[i],
+        ];
+      });
+    } else {
+      acceptStack = inputAccept.pdf;
+    }
+
     return (
       <AvInput
-        accept="application/pdf,image/png,image/gif,image/jpeg"
+        accept={acceptStack.join(',')}
         className={className}
         disabled={disabled}
         invalid={error !== null}
