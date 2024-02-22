@@ -38,7 +38,7 @@ type $Props = $OptionalProps & {
 
 type $State = {
   dateValue: Date | null;
-  stringValue?: null | string;
+  stringValue: null | string;
 };
 
 class Component extends React.Component<$Props, $State> {
@@ -60,7 +60,7 @@ class Component extends React.Component<$Props, $State> {
 
     this.state = {
       dateValue: null,
-      stringValue: undefined,
+      stringValue: null,
     };
 
     this.format = props.format || 'YYYY-MM-DD HH:mm';
@@ -72,7 +72,7 @@ class Component extends React.Component<$Props, $State> {
     } = this.props;
 
     if (value) {
-      this.setValue(value !== null ? moment(value).format(this.format) : null);
+      this.setValue(value);
     }
   }
 
@@ -82,23 +82,29 @@ class Component extends React.Component<$Props, $State> {
     } = this.props;
 
     if (prevProps.value !== value) {
-      this.setValue(value !== null ? moment(value).format(this.format) : null);
+      this.setValue(value);
     }
   }
 
-  setValue(value: null | string): void {
+  setValue(value: Date | null | string): void {
     const {
       timezone,
     } = this.props;
 
-    const dateValue: Date | null = value ? momentTimezone.tz(
-      value,
-      timezone,
-    ).toDate() : null;
+    let dateValue = null;
+    let stringValue = null;
+
+    if (value) {
+      dateValue = momentTimezone.tz(
+        value,
+        timezone,
+      ).toDate();
+      stringValue = moment(value).format(this.format);
+    }
 
     this.setState({
       dateValue,
-      stringValue: value,
+      stringValue,
     });
   }
 
