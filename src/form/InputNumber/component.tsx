@@ -50,8 +50,8 @@ class Component extends React.Component<$Props, $State> {
       value,
     } = props;
 
-    let stringValue = null;
-    let numberValue = null;
+    let stringValue: null | string = null;
+    let numberValue: null | number = null;
 
     if (typeof value !== 'undefined' && value !== null) {
       stringValue = String(value);
@@ -79,8 +79,8 @@ class Component extends React.Component<$Props, $State> {
       onChange,
     } = this.props;
 
-    let stringValue = null;
-    let numberValue = null;
+    let stringValue: null | string = null;
+    let numberValue: null | number = null;
 
     if (value !== '' && value !== null) {
       stringValue = value;

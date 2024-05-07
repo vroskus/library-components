@@ -23,7 +23,7 @@ type $Props = $OptionalProps & {
 const LoadingLines = function ({
   qty,
 }: {
-  qty: number;
+  qty?: number;
 }) {
   return ([...Array(qty || 15)].map((e, i) => (
     <tr key={`row_${String(i)}`}>
@@ -76,7 +76,9 @@ const Component = function ({
   return (
     <tbody className={`TableBody ${className || ''}`}>
       {loading === true ? (
-        <LoadingLines qty={loadingLinesQuantity} />
+        <LoadingLines
+          qty={loadingLinesQuantity}
+        />
       ) : (
         <>
           <Content
@@ -86,7 +88,9 @@ const Component = function ({
             {children}
           </Content>
           {appending === true && (
-            <LoadingLines qty={loadingLinesQuantity} />
+            <LoadingLines
+              qty={loadingLinesQuantity}
+            />
           )}
         </>
       )}

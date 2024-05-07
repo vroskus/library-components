@@ -55,7 +55,7 @@ class Component extends React.Component<$Props> {
     const date = moment.utc(value).local();
     const dateText = date.format(this.getFormat());
 
-    let view = null;
+    let view: null | string = null;
 
     if (countdown) {
       view = date.isAfter(moment())

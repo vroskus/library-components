@@ -86,13 +86,13 @@ class Component extends React.Component<$Props, $State> {
     }
   }
 
-  setValue(value: Date | null | string): void {
+  setValue(value: Date | null | string | undefined): void {
     const {
       timezone,
     } = this.props;
 
-    let dateValue = null;
-    let stringValue = null;
+    let dateValue: Date | null = null;
+    let stringValue: null | string = null;
 
     if (value) {
       dateValue = momentTimezone.tz(
@@ -242,6 +242,7 @@ class Component extends React.Component<$Props, $State> {
     } = this.state;
 
     return (
+      // @ts-expect-error
       <Datetime
         dateFormat="YYYY-MM-DD"
         displayTimeZone={timezone}

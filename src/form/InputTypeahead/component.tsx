@@ -1,3 +1,8 @@
+// Global Types
+import {
+  Option,
+} from 'availity-reactstrap-validation';
+
 // Global Components
 import * as React from 'react';
 import {
@@ -21,9 +26,7 @@ type $Ref = {
   hideMenu: () => void,
 };
 
-type $Option = {
-  id: string,
-} & Record<string, unknown>;
+type $Option = Option;
 
 type $Options = Array<$Option>;
 
@@ -33,7 +36,7 @@ type $OptionalProps = {
   labelKey?: string | void;
   minLength?: number | void;
   onChange?: (value: string) => void;
-  onOptionSelect?: (option: $Option | void) => (string | void);
+  onOptionSelect?: (option: Option | void) => (string | void);
   placeholder?: string | void;
   required?: boolean | void;
   value?: null | string | void;
@@ -155,11 +158,11 @@ class Component extends React.Component<$Props, $State> {
 
     return (
       <FormGroup className={`InputTypeahead ${className || ''}`}>
-        {label && (
+        {label ? (
           <Label>
             {label}
           </Label>
-        )}
+        ) : null}
         <AsyncTypeahead
           filterBy={() => true}
           id={name}
@@ -167,13 +170,13 @@ class Component extends React.Component<$Props, $State> {
           loading={loading}
           minLength={minLength || 3}
           onChange={(selectedOptions: $Options) => {
-            let valueToSet;
+            let valueToSet: string | undefined;
 
             if (selectedOptions.length > 0) {
               valueToSet = _.get(
                 selectedOptions[0],
                 `${labelKeyToUse}`,
-              ) as string | void;
+              ) as string | undefined;
 
               if (onOptionSelect) {
                 const onOptionSelectValue: string | void = onOptionSelect(selectedOptions[0]);
@@ -210,7 +213,7 @@ class Component extends React.Component<$Props, $State> {
           }}
           onSearch={() => {}}
           options={options}
-          // @ts-ignore
+          // @ts-expect-error ref
           ref={this.wrapperRef}
           renderInput={({
             inputRef,
@@ -219,7 +222,8 @@ class Component extends React.Component<$Props, $State> {
           }) => (
             <AvInput
               // eslint-disable-next-line
-              {...inputProps} autoComplete="off"
+              {...inputProps}
+              autoComplete="off"
               label={label}
               name={name}
               placeholder={placeholder}

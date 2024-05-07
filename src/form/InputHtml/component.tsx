@@ -99,7 +99,7 @@ class Component extends React.Component<$Props, $State> {
           style={{
             minHeight,
           }}
-          value={value}
+          value={value || undefined}
         />
         <AvInput
           name={name}

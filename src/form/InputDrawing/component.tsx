@@ -83,10 +83,12 @@ const Component = function ({
     () => {
       const updatedXml = getSvgXML();
 
-      setXml(updatedXml);
+      if (updatedXml !== null) {
+        setXml(updatedXml);
 
-      if (onChange) {
-        onChange(updatedXml);
+        if (onChange) {
+          onChange(updatedXml);
+        }
       }
     },
     [getSvgXML, onChange],

@@ -135,7 +135,9 @@ class Component extends React.Component<$Props, $State> {
       if (onChange) {
         onChange(value);
       }
-    } catch (error) {
+    } catch (err) {
+      const error = err as Error;
+
       await this.setStateAsync({
         error,
         loading: false,
@@ -253,7 +255,7 @@ class Component extends React.Component<$Props, $State> {
       value,
     } = this.state;
 
-    let acceptStack = [];
+    let acceptStack: Array<string> = [];
 
     if (accept) {
       accept.forEach((i) => {
