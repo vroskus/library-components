@@ -66,7 +66,7 @@ class Component extends React.Component<$Props, $State> {
     value: undefined,
   };
 
-  wrapperRef: React.RefObject<typeof Typeahead & $Ref>;
+  wrapperRef: React.RefObject<$Ref & typeof Typeahead>;
 
   handleClickOutsideBind: (event: Event) => void;
 
@@ -79,7 +79,7 @@ class Component extends React.Component<$Props, $State> {
       value: props.value,
     };
 
-    this.wrapperRef = React.createRef<typeof Typeahead & $Ref>();
+    this.wrapperRef = React.createRef<$Ref & typeof Typeahead>();
 
     this.handleClickOutsideBind = this.handleClickOutside.bind(this);
   }
