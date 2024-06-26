@@ -69,16 +69,16 @@ class Component extends React.Component<$Props> {
 
     return multiple === true ? (
       <td className="TdDate TdDate-multiple">
-        <div>
+        <div className="text-nowrap">
           {view}
         </div>
-        <small className="text-muted">
+        <small className="text-muted text-nowrap">
           {dateText}
         </small>
       </td>
     ) : (
       <td
-        className="TdDate"
+        className="TdDate text-nowrap"
         title={dateText}
       >
         {view}

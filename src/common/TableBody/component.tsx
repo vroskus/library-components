@@ -10,14 +10,14 @@ import type {
 type $OptionalProps = {
   appending?: boolean;
   className?: number;
+  empty?: boolean;
+  loading?: boolean;
   loadingLinesQuantity?: number;
 };
 
 type $Props = $OptionalProps & {
   children: $Children;
-  empty: boolean;
   labelEmptyList: string;
-  loading: boolean;
 };
 
 const LoadingLines = function ({
@@ -82,7 +82,7 @@ const Component = function ({
       ) : (
         <>
           <Content
-            empty={empty === true && appending === false}
+            empty={empty === true && !appending}
             labelEmptyList={labelEmptyList}
           >
             {children}
@@ -101,6 +101,8 @@ const Component = function ({
 Component.defaultProps = {
   appending: undefined,
   className: undefined,
+  empty: undefined,
+  loading: undefined,
   loadingLinesQuantity: undefined,
 };
 

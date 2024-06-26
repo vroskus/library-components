@@ -1,5 +1,5 @@
 // Global Types
-import {
+import type {
   Option,
 } from 'availity-reactstrap-validation';
 
