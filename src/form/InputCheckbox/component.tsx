@@ -15,6 +15,7 @@ import type {
 type $OptionalProps = {
   className?: string;
   description?: null | string;
+  iconClass?: string;
   label?: $Component<unknown> | string;
   onChange?: (value: boolean | null) => unknown;
   stringify?: boolean;
@@ -33,6 +34,7 @@ class Component extends React.Component<$Props, $State> {
   static defaultProps: $OptionalProps = {
     className: undefined,
     description: undefined,
+    iconClass: undefined,
     label: undefined,
     onChange: undefined,
     stringify: undefined,
@@ -87,6 +89,37 @@ class Component extends React.Component<$Props, $State> {
     );
   }
 
+  renderInput(id: string) {
+    const {
+      iconClass,
+      name,
+      stringify,
+    } = this.props;
+    const {
+      value,
+    } = this.state;
+
+    return (
+      <>
+        <AvInput
+          id={id}
+          name={stringify === true ? `_${name}` : name}
+          onClick={() => {
+            const newValue = value === null ? true : !value;
+
+            this.onChange(newValue);
+            this.setState({
+              value: newValue,
+            });
+          }}
+          type="checkbox"
+          value={value}
+        />
+        <span className={iconClass || 'fa fa-check'} />
+      </>
+    );
+  }
+
   render() {
     const {
       className,
@@ -105,21 +138,7 @@ class Component extends React.Component<$Props, $State> {
           className="d-flex justify-content-start align-items-center mb-1"
           htmlFor={id}
         >
-          <AvInput
-            id={id}
-            name={stringify === true ? `_${name}` : name}
-            onClick={() => {
-              const newValue = value === null ? true : !value;
-
-              this.onChange(newValue);
-              this.setState({
-                value: newValue,
-              });
-            }}
-            type="checkbox"
-            value={value}
-          />
-          <span className="fa fa-check" />
+          {this.renderInput(id)}
           {this.renderLabel()}
         </label>
         {stringify === true && (

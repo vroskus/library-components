@@ -20,6 +20,7 @@ type $OptionalProps = {
   className?: string;
   dateFormat?: string;
   disabled?: boolean;
+  iconClass?: string;
   label?: string;
   onChange?: (value: Date | null) => unknown;
   range?: {
@@ -50,6 +51,7 @@ class Component extends React.Component<$Props, $State> {
     className: undefined,
     dateFormat: undefined,
     disabled: undefined,
+    iconClass: undefined,
     label: undefined,
     onChange: undefined,
     range: undefined,
@@ -207,6 +209,7 @@ class Component extends React.Component<$Props, $State> {
     const {
       className,
       disabled,
+      iconClass,
       label,
       labelOpenCalendar,
       name,
@@ -251,7 +254,7 @@ class Component extends React.Component<$Props, $State> {
             }}
             title={labelOpenCalendar}
           >
-            <em className="fa icon-clock" />
+            <em className={iconClass || 'fa icon-clock'} />
           </Button>
         </InputGroup>
       </FormGroup>

@@ -16,7 +16,15 @@ type $Item = {
   style?: Record<string, unknown>;
 };
 
-type $Props = {
+type $OptionalProps = {
+  iconClasses?: {
+    sort: string,
+    sortDown: string,
+    sortUp: string,
+  };
+};
+
+type $Props = $OptionalProps & {
   empty: boolean;
   items: Array<$Item>;
 };
@@ -28,6 +36,10 @@ type $State = {
 };
 
 class Component extends React.Component<$Props, $State> {
+  static defaultProps: $OptionalProps = {
+    iconClasses: undefined,
+  };
+
   constructor(props: $Props) {
     super(props);
 
@@ -73,11 +85,48 @@ class Component extends React.Component<$Props, $State> {
     });
   }
 
-  renderSortTh(item: $Item, sort: $Sort, index: number) {
+  renderIcon(index: number) {
+    const {
+      iconClasses,
+    } = this.props;
     const {
       activeItemIndex,
-      lock,
       reverse,
+    } = this.state;
+
+    let iconSortClassName = 'fa fa-sort';
+    let iconSortDownClassDown = 'fa fa-sort-down';
+    let iconSortUpClassName = 'fa fa-sort-up';
+
+    if (iconClasses) {
+      const {
+        sort,
+        sortDown,
+        sortUp,
+      } = iconClasses;
+
+      iconSortClassName = sort;
+      iconSortDownClassDown = sortDown;
+      iconSortUpClassName = sortUp;
+    }
+
+    return (activeItemIndex === index ? (
+      <em
+        className={`${reverse ? iconSortUpClassName : iconSortDownClassDown} text-muted ml-1`}
+      />
+    ) : (
+      <em
+        className={`${iconSortClassName} ml-1`}
+        style={{
+          color: 'lightgrey',
+        }}
+      />
+    ));
+  }
+
+  renderSortTh(item: $Item, sort: $Sort, index: number) {
+    const {
+      lock,
     } = this.state;
 
     return (
@@ -92,16 +141,7 @@ class Component extends React.Component<$Props, $State> {
         }}
       >
         {item.name}
-        {activeItemIndex === index ? (
-          <em className={`ml-1 text-muted ${reverse ? 'fa fa-sort-up' : 'fa fa-sort-down'}`} />
-        ) : (
-          <em
-            className="ml-1 fa fa-sort"
-            style={{
-              color: 'lightgrey',
-            }}
-          />
-        )}
+        {this.renderIcon(index)}
       </th>
     );
   }

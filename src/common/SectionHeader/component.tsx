@@ -42,7 +42,7 @@ const Component = function ({
             {titleButton}
           </span>
           {iconClass && (
-            <em className={`fa ${iconClass} mr-2`} />
+            <em className={`${iconClass} mr-2`} />
           )}
           <div>
             <TitleSubtitle
