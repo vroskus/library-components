@@ -13,13 +13,13 @@ import Datetime from 'react-datetime';
 
 // Helpers
 import moment from 'moment';
-import momentTimezone from 'moment-timezone';
+import 'moment-timezone';
 
 // Types
 type $OptionalProps = {
   className?: string;
+  dateFormat?: string;
   disabled?: boolean;
-  format?: string;
   label?: string;
   onChange?: (value: Date | null) => unknown;
   range?: {
@@ -27,43 +27,52 @@ type $OptionalProps = {
     min?: Date;
   };
   required?: boolean;
+  timeFormat?: string;
+  timezone?: string;
   value?: Date | null | string;
 };
 
 type $Props = $OptionalProps & {
   labelOpenCalendar: string;
   name: string;
-  timezone: string;
 };
 
 type $State = {
+  dateFormat: string;
   dateValue: Date | null;
+  fullFormat: string;
   stringValue: null | string;
+  timeFormat: string;
 };
 
 class Component extends React.Component<$Props, $State> {
-  format: string;
-
   static defaultProps: $OptionalProps = {
     className: undefined,
+    dateFormat: undefined,
     disabled: undefined,
-    format: undefined,
     label: undefined,
     onChange: undefined,
     range: undefined,
     required: undefined,
+    timeFormat: undefined,
+    timezone: undefined,
     value: undefined,
   };
 
   constructor(props: $Props) {
     super(props);
 
-    this.state = {
-      dateValue: null,
-      stringValue: null,
-    };
+    const dateFormat = props.dateFormat || 'YYYY-MM-DD';
+    const timeFormat = props.timeFormat || 'HH:mm';
+    const fullFormat = `${dateFormat} ${timeFormat}`;
 
-    this.format = props.format || 'YYYY-MM-DD HH:mm';
+    this.state = {
+      dateFormat,
+      dateValue: null,
+      fullFormat,
+      stringValue: null,
+      timeFormat,
+    };
   }
 
   componentDidMount() {
@@ -86,20 +95,32 @@ class Component extends React.Component<$Props, $State> {
     }
   }
 
-  setValue(value: Date | null | string | undefined): void {
+  getDate(value: Date | null | string | undefined): Date {
     const {
       timezone,
     } = this.props;
+
+    if (timezone) {
+      return moment.tz(
+        value,
+        timezone,
+      ).toDate();
+    }
+
+    return moment(value).toDate();
+  }
+
+  setValue(value: Date | null | string | undefined): void {
+    const {
+      fullFormat,
+    } = this.state;
 
     let dateValue: Date | null = null;
     let stringValue: null | string = null;
 
     if (value) {
-      dateValue = momentTimezone.tz(
-        value,
-        timezone,
-      ).toDate();
-      stringValue = moment(value).format(this.format);
+      dateValue = this.getDate(value);
+      stringValue = moment(value).format(fullFormat);
     }
 
     this.setState({
@@ -111,13 +132,9 @@ class Component extends React.Component<$Props, $State> {
   changeValue(value: null | string): void {
     const {
       onChange,
-      timezone,
     } = this.props;
 
-    const dateValue: Date | null = value ? momentTimezone.tz(
-      value,
-      timezone,
-    ).toDate() : null;
+    const dateValue: Date | null = value ? this.getDate(value) : null;
 
     if (onChange && this.validateValue(value)) {
       onChange(dateValue);
@@ -130,10 +147,14 @@ class Component extends React.Component<$Props, $State> {
   }
 
   isValidDate(value: null | string | void): boolean {
+    const {
+      fullFormat,
+    } = this.state;
+
     if (value) {
       return moment(
         value,
-        this.format,
+        fullFormat,
         true,
       ).isValid();
     }
@@ -182,7 +203,7 @@ class Component extends React.Component<$Props, $State> {
     return false;
   }
 
-  renderInput(props: unknown, openCalendar: () => unknown) {
+  renderInput(props: $Props, openCalendar: unknown): JSX.Element {
     const {
       className,
       disabled,
@@ -223,7 +244,11 @@ class Component extends React.Component<$Props, $State> {
           />
           <Button
             color="default"
-            onClick={openCalendar}
+            onClick={() => {
+              if (typeof openCalendar === 'function') {
+                openCalendar();
+              }
+            }}
             title={labelOpenCalendar}
           >
             <em className="fa icon-clock" />
@@ -238,22 +263,36 @@ class Component extends React.Component<$Props, $State> {
       timezone,
     } = this.props;
     const {
+      dateFormat,
+      fullFormat,
       stringValue,
+      timeFormat,
     } = this.state;
 
     return (
-      // @ts-expect-error
       <Datetime
-        dateFormat="YYYY-MM-DD"
+        dateFormat={dateFormat}
         displayTimeZone={timezone}
         isValidDate={(value) => this.isValidRange(value)}
-        onChange={(m: moment.Moment) => this.changeValue(m.format(this.format))}
-        renderInput={(props: $Props, open: () => unknown) => this.renderInput(
+        onChange={(value) => {
+          let valueMoment;
+
+          if (typeof value === 'string') {
+            valueMoment = moment(value);
+          } else {
+            valueMoment = value;
+          }
+
+          if (valueMoment) {
+            this.changeValue(valueMoment.format(fullFormat));
+          }
+        }}
+        renderInput={(props: $Props, openCalendar) => this.renderInput(
           props,
-          open,
+          openCalendar,
         )}
-        timeFormat="HH:mm"
-        value={stringValue}
+        timeFormat={timeFormat}
+        value={stringValue || undefined}
       />
     );
   }
