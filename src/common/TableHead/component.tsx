@@ -2,10 +2,15 @@
 import * as React from 'react';
 
 // Types
+import type {
+  $Component,
+} from '../../types';
+
 type $Sort = [() => Promise<unknown>, () => Promise<unknown>];
 
 type $Item = {
   className?: string;
+  component?: $Component<unknown>;
   name: string;
   sort?: $Sort;
   style?: Record<string, unknown>;
@@ -135,7 +140,7 @@ class Component extends React.Component<$Props, $State> {
               style={item.style || {
               }}
             >
-              {item.name}
+              {item.component || item.name}
             </th>
           )))}
         </tr>
