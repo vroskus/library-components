@@ -108,6 +108,8 @@ class Component extends React.Component<$Props, $State> {
       visible,
     } = this.state;
 
+    const formId = `${id}Form`;
+
     return (
       <>
         {this.childrenWithToggleHandler()}
@@ -122,6 +124,7 @@ class Component extends React.Component<$Props, $State> {
           toggle={() => this.toggle()}
         >
           <AvForm
+            id={formId}
             onValidSubmit={(
               event: Event,
               values: $Item,
@@ -151,6 +154,7 @@ class Component extends React.Component<$Props, $State> {
                 <Button
                   className="mr-1"
                   color={buttonColor || 'success'}
+                  form={formId}
                   id="dialog-confirm-button"
                   type="submit"
                 >

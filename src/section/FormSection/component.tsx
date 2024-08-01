@@ -38,12 +38,12 @@ type $OptionalProps = {
   headerDescription?: string;
   headerIconClass?: string;
   headerTitle?: string;
-  id?: string;
   onClear?: () => unknown;
 };
 
 type $Props = $OptionalProps & {
   fields: $Component<unknown>;
+  id: string;
   labelClearButton: string;
   labelSaveButton: string;
   onAction: (arg0: $Item) => unknown;
@@ -63,7 +63,6 @@ class Component extends React.Component<$Props, $State> {
     headerDescription: undefined,
     headerIconClass: undefined,
     headerTitle: undefined,
-    id: undefined,
     onClear: undefined,
   };
 
@@ -166,7 +165,7 @@ class Component extends React.Component<$Props, $State> {
     ) : null;
   }
 
-  renderButtons() {
+  renderButtons(formId: string) {
     const {
       buttonColor,
       changed,
@@ -180,6 +179,7 @@ class Component extends React.Component<$Props, $State> {
           <Button
             color={!changed ? 'default' : buttonColor || 'success'}
             disabled={!changed}
+            form={formId}
             outline={!changed}
             type="submit"
           >
@@ -194,15 +194,19 @@ class Component extends React.Component<$Props, $State> {
     const {
       confirm,
       fields,
+      id,
       onAction,
     } = this.props;
     const {
       clear,
     } = this.state;
 
+    const formId = `${id}Form`;
+
     return (
       <CardBody className="pb-2">
         <AvForm
+          id={formId}
           onValidSubmit={(event: Event, values: $Item) => {
             if (confirm) {
               this.setState({
@@ -214,7 +218,7 @@ class Component extends React.Component<$Props, $State> {
           }}
         >
           {!clear && fields}
-          {this.renderButtons()}
+          {this.renderButtons(formId)}
         </AvForm>
       </CardBody>
     );
