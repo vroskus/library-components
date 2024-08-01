@@ -11,6 +11,9 @@ import {
   AvForm,
 } from 'availity-reactstrap-validation';
 
+// Helpers
+import _ from 'lodash';
+
 // Components
 import TitleSubtitle from '../../common/TitleSubtitle';
 
@@ -128,7 +131,18 @@ class Component extends React.Component<$Props, $State> {
             onValidSubmit={(
               event: Event,
               values: $Item,
-            ) => onAction(values) && this.toggle()}
+            ) => {
+              const targetFormId: string | undefined = _.get(
+                event,
+                'target.id',
+              );
+
+              if (targetFormId === formId) {
+                onAction(values);
+
+                this.toggle();
+              }
+            }}
           >
             <ModalHeader>
               <TitleSubtitle
