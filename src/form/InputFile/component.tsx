@@ -115,8 +115,8 @@ class Component extends React.Component<$Props, $State> {
       );
 
       const params = {
-        'Content-Type': 'multipart/form-data',
         body: data,
+        'Content-Type': 'multipart/form-data',
         method: 'POST',
       };
       const response = await fetch(
@@ -167,7 +167,7 @@ class Component extends React.Component<$Props, $State> {
 
     return (
       <Button
-        color="warning"
+        color={'warning'}
         onClick={() => {
           this.setState({
             value: null,
@@ -210,7 +210,7 @@ class Component extends React.Component<$Props, $State> {
           );
         }}
         required={required}
-        type="file"
+        type={'file'}
         value={value}
       />
     );
@@ -228,14 +228,14 @@ class Component extends React.Component<$Props, $State> {
 
     return (
       <div className={`input-group ${className || ''}`}>
-        <div className="form-control py-0 InputFile-image-thumbnail text-center">
+        <div className={'form-control py-0 InputFile-image-thumbnail text-center'}>
           <ModalImage
-            className="img-fluid"
+            className={'img-fluid'}
             large={`${fileDirUrl}/${value || ''}`}
             small={`${imageThumbDirUrl || ''}/${value || ''}`}
           />
         </div>
-        <div className="input-group-append">
+        <div className={'input-group-append'}>
           {this.renderChangeFileButton()}
         </div>
       </div>
@@ -285,7 +285,7 @@ class Component extends React.Component<$Props, $State> {
           );
         }}
         required={required}
-        type="file"
+        type={'file'}
         value={value}
       />
     );
@@ -303,21 +303,21 @@ class Component extends React.Component<$Props, $State> {
 
     return (
       <div className={`input-group ${className || ''}`}>
-        <div className="input-group-prepend">
-          <span className="input-group-text">
-            <em className="icon-doc" />
+        <div className={'input-group-prepend'}>
+          <span className={'input-group-text'}>
+            <em className={'icon-doc'} />
           </span>
         </div>
-        <div className="form-control">
+        <div className={'form-control'}>
           <a
             href={`${fileDirUrl}/${value || ''}`}
-            rel="noreferrer"
-            target="_blank"
+            rel={'noreferrer'}
+            target={'_blank'}
           >
             {labelFile}
           </a>
         </div>
-        <div className="input-group-append">
+        <div className={'input-group-append'}>
           {this.renderChangeFileButton()}
         </div>
       </div>
@@ -356,7 +356,7 @@ class Component extends React.Component<$Props, $State> {
           style={{
             display: 'none',
           }}
-          type="text"
+          type={'text'}
           value={value}
         />
       </>
@@ -379,15 +379,15 @@ class Component extends React.Component<$Props, $State> {
     ) || labelError;
 
     return (
-      <FormGroup className="InputFile">
+      <FormGroup className={'InputFile'}>
         {label && (
           <Label>
             {label}
           </Label>
         )}
         {loading ? (
-          <div className="form-control py-0 text-center">
-            <Spinner color="primary" />
+          <div className={'form-control py-0 text-center'}>
+            <Spinner color={'primary'} />
           </div>
         ) : this.renderContent()}
         <FormFeedback>

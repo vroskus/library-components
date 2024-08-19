@@ -36,8 +36,8 @@ const Component = function ({
 }: $Props): $Component<$Props> {
   return (
     <CardBody className={`SectionHeader ${className || ''} ${bottomBorder ? 'border-thin-bottom' : ''} py-2`}>
-      <div className="d-flex flex-row">
-        <div className="d-flex flex-grow-1 align-items-center">
+      <div className={'d-flex flex-row'}>
+        <div className={'d-flex flex-grow-1 align-items-center'}>
           <span>
             {titleButton}
           </span>
@@ -52,7 +52,7 @@ const Component = function ({
           </div>
         </div>
         {rightButtons && (
-          <div className="d-flex flex-grow-0 pl-3">
+          <div className={'d-flex flex-grow-0 pl-3'}>
             {rightButtons}
           </div>
         )}

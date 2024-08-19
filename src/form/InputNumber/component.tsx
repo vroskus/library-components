@@ -128,7 +128,7 @@ class Component extends React.Component<$Props, $State> {
           onChange={(e) => this.setValue(e.target.value)}
           placeholder={placeholder}
           required={required}
-          type="number"
+          type={'number'}
           value={stringValue}
         />
         <AvInput

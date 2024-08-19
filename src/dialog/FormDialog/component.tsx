@@ -117,9 +117,9 @@ class Component extends React.Component<$Props, $State> {
       <>
         {this.childrenWithToggleHandler()}
         <Modal
-          backdrop="static"
+          backdrop={'static'}
           centered
-          className="FormDialog"
+          className={'FormDialog'}
           id={id}
           isOpen={visible}
           onOpened={onOpened}
@@ -160,23 +160,23 @@ class Component extends React.Component<$Props, $State> {
             </ModalBody>
             <ModalFooter>
               {leftButtons && (
-                <div className="mr-auto">
+                <div className={'mr-auto'}>
                   {leftButtons}
                 </div>
               )}
               <div>
                 <Button
-                  className="mr-1"
+                  className={'mr-1'}
                   color={buttonColor || 'success'}
                   form={formId}
-                  id="dialog-confirm-button"
-                  type="submit"
+                  id={'dialog-confirm-button'}
+                  type={'submit'}
                 >
                   {labelSaveButton}
                 </Button>
                 <Button
-                  color="secondary"
-                  id="dialog-close-button"
+                  color={'secondary'}
+                  id={'dialog-close-button'}
                   onClick={() => this.toggle()}
                 >
                   {labelCloseButton}

@@ -28,7 +28,7 @@ const LoadingLines = function ({
   return ([...Array(qty || 15)].map((e, i) => (
     <tr key={`row_${String(i)}`}>
       <td colSpan={100}>
-        <div className="TableBody-empty" />
+        <div className={'TableBody-empty'} />
       </td>
     </tr>
   )));
@@ -42,7 +42,7 @@ const Empty = function ({
   return (
     <tr>
       <td colSpan={100}>
-        <div className="text-muted text-center p-3">
+        <div className={'text-muted text-center p-3'}>
           {labelEmptyList}
         </div>
       </td>

@@ -111,7 +111,7 @@ class Component extends React.Component<$Props, $State> {
         {!instant && this.childrenWithToggleHandler()}
         <Modal
           centered
-          className="CommonDialog"
+          className={'CommonDialog'}
           id={id}
           isOpen={visible}
           onOpened={onOpened}
@@ -124,21 +124,21 @@ class Component extends React.Component<$Props, $State> {
               title={title}
             />
           </ModalHeader>
-          <ModalBody className="p-0">
+          <ModalBody className={'p-0'}>
             {content}
           </ModalBody>
           <ModalFooter>
             {leftButtons && (
-              <div className="mr-auto">
+              <div className={'mr-auto'}>
                 {leftButtons}
               </div>
             )}
             <div>
               {onAction && (
                 <Button
-                  className="mr-1"
-                  color="success"
-                  id="dialog-confirm-button"
+                  className={'mr-1'}
+                  color={'success'}
+                  id={'dialog-confirm-button'}
                   onClick={() => {
                     onAction();
 
@@ -149,8 +149,8 @@ class Component extends React.Component<$Props, $State> {
                 </Button>
               )}
               <Button
-                color="secondary"
-                id="dialog-close-button"
+                color={'secondary'}
+                id={'dialog-close-button'}
                 onClick={() => {
                   if (closeAction) {
                     closeAction();

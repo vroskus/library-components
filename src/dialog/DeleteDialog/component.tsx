@@ -102,7 +102,7 @@ class Component extends React.Component<$Props, $State> {
         {this.childrenWithToggleHandler()}
         <Modal
           centered
-          className="DeleteDialog"
+          className={'DeleteDialog'}
           id={id}
           isOpen={visible}
           onOpened={onOpened}
@@ -120,15 +120,15 @@ class Component extends React.Component<$Props, $State> {
           </ModalBody>
           <ModalFooter>
             <Button
-              color="danger"
-              id="dialog-confirm-button"
+              color={'danger'}
+              id={'dialog-confirm-button'}
               onClick={() => onAction() && this.toggle()}
             >
               {buttonTitle || labelDeleteButton}
             </Button>
             <Button
-              color="secondary"
-              id="dialog-close-button"
+              color={'secondary'}
+              id={'dialog-close-button'}
               onClick={() => this.toggle()}
             >
               {labelCloseButton}

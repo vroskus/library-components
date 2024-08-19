@@ -7,11 +7,11 @@ import {
 
 // Types
 type $OptionalProps = {
-  className?: string,
+  className?: string;
   disabled?: boolean;
   label?: string;
   onChange?: (value: boolean) => unknown;
-  size?: 'lg' | 'md' | 'sm',
+  size?: 'lg' | 'md' | 'sm';
   value?: boolean;
 };
 
@@ -73,7 +73,7 @@ class Component extends React.Component<$Props, $State> {
         <div className={`InputSwitch form-check form-switch form-switch-${size || 'md'} mr-2 ${className || ''}`}>
           <input
             checked={value}
-            className="form-check-input"
+            className={'form-check-input'}
             disabled={disabled}
             id={id}
             onChange={() => this.setState(
@@ -82,12 +82,12 @@ class Component extends React.Component<$Props, $State> {
               },
               () => onChange && onChange(!value),
             )}
-            role="switch"
-            type="checkbox"
+            role={'switch'}
+            type={'checkbox'}
           />
           {label && (
             <label
-              className="form-check-label"
+              className={'form-check-label'}
               htmlFor={id}
             >
               {label}
@@ -101,7 +101,7 @@ class Component extends React.Component<$Props, $State> {
           style={{
             display: 'none',
           }}
-          type="checkbox"
+          type={'checkbox'}
           value={value}
         />
       </>

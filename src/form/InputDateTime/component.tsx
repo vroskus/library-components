@@ -246,7 +246,7 @@ class Component extends React.Component<$Props, $State> {
             value={dateValue}
           />
           <Button
-            color="default"
+            color={'default'}
             onClick={() => {
               if (typeof openCalendar === 'function') {
                 openCalendar();

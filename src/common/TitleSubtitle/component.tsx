@@ -20,11 +20,11 @@ const Component = function ({
 }: $Props): $Component<$Props> {
   return (
     <>
-      <h4 className="mb-0">
+      <h4 className={'mb-0'}>
         {title}
       </h4>
       {subTitle && (
-        <small className="d-block text-muted lh-1 mt-1">
+        <small className={'d-block text-muted lh-1 mt-1'}>
           {subTitle}
         </small>
       )}

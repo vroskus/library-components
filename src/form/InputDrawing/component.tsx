@@ -114,7 +114,7 @@ const Component = function ({
         </Label>
       )}
       <div
-        className="mb-1"
+        className={'mb-1'}
         style={{
           display: 'flex',
           justifyContent: 'flexWrap',
@@ -127,17 +127,17 @@ const Component = function ({
           style={style}
         />
       </div>
-      <ButtonGroup className="d-flex mb-3">
+      <ButtonGroup className={'d-flex mb-3'}>
         <Button
           active={color === Color.black}
-          className="w-100"
+          className={'w-100'}
           onClick={() => {
             setPenWidth(3);
             setPenColor(Color.black);
           }}
         >
           <em
-            className="fa fa-pen"
+            className={'fa fa-pen'}
             style={{
               color: Color.black,
             }}
@@ -145,14 +145,14 @@ const Component = function ({
         </Button>
         <Button
           active={color === Color.red}
-          className="w-100"
+          className={'w-100'}
           onClick={() => {
             setPenWidth(3);
             setPenColor(Color.red);
           }}
         >
           <em
-            className="fa fa-pen"
+            className={'fa fa-pen'}
             style={{
               color: Color.red,
             }}
@@ -160,14 +160,14 @@ const Component = function ({
         </Button>
         <Button
           active={color === Color.green}
-          className="w-100"
+          className={'w-100'}
           onClick={() => {
             setPenWidth(3);
             setPenColor(Color.green);
           }}
         >
           <em
-            className="fa fa-pen"
+            className={'fa fa-pen'}
             style={{
               color: Color.green,
             }}
@@ -175,25 +175,25 @@ const Component = function ({
         </Button>
         <Button
           active={color === Color.white}
-          className="w-100"
+          className={'w-100'}
           onClick={() => {
             setPenWidth(10);
             setPenColor(Color.white);
           }}
         >
-          <em className="fa fa-eraser" />
+          <em className={'fa fa-eraser'} />
         </Button>
         <Button
-          className="w-100"
+          className={'w-100'}
           onClick={undo}
         >
-          <em className="fa fa-undo" />
+          <em className={'fa fa-undo'} />
         </Button>
         <Button
-          className="w-100"
+          className={'w-100'}
           onClick={clear}
         >
-          <em className="fa fa-trash-alt" />
+          <em className={'fa fa-trash-alt'} />
         </Button>
       </ButtonGroup>
       <AvInput

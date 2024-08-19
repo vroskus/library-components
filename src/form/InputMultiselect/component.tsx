@@ -12,7 +12,7 @@ import _ from 'lodash';
 
 // Types
 type $Option = {
-  id: string,
+  id: string;
 } & Record<string, unknown>;
 
 type $Options = Array<$Option>;
@@ -90,7 +90,7 @@ class Component extends React.Component<$Props, $State> {
     const labelKeyToUse: string = labelKey || 'Name';
 
     return (
-      <FormGroup className="InputMultiselect">
+      <FormGroup className={'InputMultiselect'}>
         <AvField
           label={label}
           multiple
@@ -113,7 +113,7 @@ class Component extends React.Component<$Props, $State> {
           }}
           placeholder={labelSelectMultiple}
           required={required}
-          type="select"
+          type={'select'}
           value={value}
         >
           {options.map((option: $Option) => (

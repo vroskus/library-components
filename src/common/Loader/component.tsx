@@ -51,7 +51,7 @@ class Component extends React.Component<$Props> {
         className={`Loader-spinner d-flex align-items-center justify-content-center w-100 ${sizeClassName}`}
       >
         <Spinner
-          color="primary"
+          color={'primary'}
           style={style}
         />
       </div>
@@ -80,7 +80,7 @@ class Component extends React.Component<$Props> {
         {children}
         {loading === true && (
           <div
-            className="Loader-overlay d-flex align-items-center position-absolute w-100"
+            className={'Loader-overlay d-flex align-items-center position-absolute w-100'}
             style={style}
           >
             {this.renderSpinner()}

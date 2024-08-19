@@ -18,9 +18,9 @@ type $Item = {
 
 type $OptionalProps = {
   iconClasses?: {
-    sort: string,
-    sortDown: string,
-    sortUp: string,
+    sort: string;
+    sortDown: string;
+    sortUp: string;
   };
 };
 
@@ -136,7 +136,7 @@ class Component extends React.Component<$Props, $State> {
           sort,
           index,
         )}
-        role="button"
+        role={'button'}
         style={item.style || {
         }}
       >
@@ -154,7 +154,7 @@ class Component extends React.Component<$Props, $State> {
 
     if (empty === true) {
       return (
-        <thead className="TableHead">
+        <thead className={'TableHead'}>
           <tr>
             <th
               style={{
@@ -167,7 +167,7 @@ class Component extends React.Component<$Props, $State> {
     }
 
     return (
-      <thead className="TableHead">
+      <thead className={'TableHead'}>
         <tr>
           {items.map((item: $Item, index: number) => (item.sort ? this.renderSortTh(
             item,

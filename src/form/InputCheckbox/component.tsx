@@ -75,12 +75,12 @@ class Component extends React.Component<$Props, $State> {
     } = this.props;
 
     return (
-      <p className="mb-0">
+      <p className={'mb-0'}>
         {label}
         {description && (
           <>
             <br />
-            <small className="d-block text-muted lh-1">
+            <small className={'d-block text-muted lh-1'}>
               {description}
             </small>
           </>
@@ -112,7 +112,7 @@ class Component extends React.Component<$Props, $State> {
               value: newValue,
             });
           }}
-          type="checkbox"
+          type={'checkbox'}
           value={value}
         />
         <span className={iconClass || 'fa fa-check'} />
@@ -135,7 +135,7 @@ class Component extends React.Component<$Props, $State> {
     return (
       <div className={`InputCheckbox checkbox c-checkbox mb-3 ${className || ''}`}>
         <label
-          className="d-flex justify-content-start align-items-center mb-1"
+          className={'d-flex justify-content-start align-items-center mb-1'}
           htmlFor={id}
         >
           {this.renderInput(id)}

@@ -22,8 +22,8 @@ import _ from 'lodash';
 
 // Types
 type $Ref = {
-  contains: (arg0: Event['target']) => boolean,
-  hideMenu: () => void,
+  contains: (arg0: Event['target']) => boolean;
+  hideMenu: () => void;
 };
 
 type $Option = Option;
@@ -223,7 +223,7 @@ class Component extends React.Component<$Props, $State> {
             <AvInput
               // eslint-disable-next-line
               {...inputProps}
-              autoComplete="off"
+              autoComplete={'off'}
               label={label}
               name={name}
               placeholder={placeholder}

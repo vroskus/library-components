@@ -88,7 +88,7 @@ class Component extends React.Component<$Props, $State> {
     } = this.state;
 
     return (
-      <FormGroup className="InputHtml">
+      <FormGroup className={'InputHtml'}>
         {label && (
           <Label>
             {label}

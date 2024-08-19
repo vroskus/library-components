@@ -24,22 +24,22 @@ const Component = function ({
 }: $Props): $Component<$Props> {
   return (
     <td
-      className="TdImage py-0"
+      className={'TdImage py-0'}
       style={{
         width: 64,
       }}
     >
-      <div className="d-flex align-items-center">
+      <div className={'d-flex align-items-center'}>
         {value ? (
           <ModalImage
-            className="img-fluid"
+            className={'img-fluid'}
             large={largeImageUrl}
             small={smallImageUrl}
           />
         ) : (
           <div>
             <img
-              alt=""
+              alt={''}
               src={noImageUrl}
             />
           </div>

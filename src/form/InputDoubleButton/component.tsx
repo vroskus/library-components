@@ -129,7 +129,7 @@ class Component extends React.Component<$Props, $State> {
           style={{
             display: 'none',
           }}
-          type="checkbox"
+          type={'checkbox'}
           value={value}
         />
       </>

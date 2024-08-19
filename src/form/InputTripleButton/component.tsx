@@ -78,12 +78,12 @@ class Component extends React.Component<$Props, $State> {
               () => onChange && onChange(0),
             )}
             outline={value !== 0}
-            size="xs"
+            size={'xs'}
           >
             {labelDisabled}
           </Button>
           <Button
-            color="success"
+            color={'success'}
             disabled={disabled}
             onClick={() => this.setState(
               {
@@ -92,12 +92,12 @@ class Component extends React.Component<$Props, $State> {
               () => onChange && onChange(1),
             )}
             outline={value !== 1}
-            size="xs"
+            size={'xs'}
           >
             {labelEnabled}
           </Button>
           <Button
-            color="warning"
+            color={'warning'}
             disabled={disabled}
             onClick={() => this.setState(
               {
@@ -106,7 +106,7 @@ class Component extends React.Component<$Props, $State> {
               () => onChange && onChange(2),
             )}
             outline={value !== 2}
-            size="xs"
+            size={'xs'}
           >
             {labelRequired}
           </Button>

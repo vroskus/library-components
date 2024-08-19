@@ -107,7 +107,7 @@ class Component extends React.Component<$Props, $State> {
         {confirmItem !== null && confirm && (
           <>
             <ModalHeader>
-              <p className="mb-0">
+              <p className={'mb-0'}>
                 {confirm.labelHeader}
               </p>
             </ModalHeader>
@@ -118,7 +118,7 @@ class Component extends React.Component<$Props, $State> {
             </ModalBody>
             <ModalFooter>
               <Button
-                color="warning"
+                color={'warning'}
                 onClick={() => {
                   onAction(confirmItem);
 
@@ -130,7 +130,7 @@ class Component extends React.Component<$Props, $State> {
                 {confirm.labelConfirmButton || 'Confirm'}
               </Button>
               <Button
-                color="secondary"
+                color={'secondary'}
                 onClick={() => this.setState({
                   confirmItem: null,
                 })}
@@ -154,11 +154,11 @@ class Component extends React.Component<$Props, $State> {
 
     return onClear && changed ? (
       <Button
-        className="mr-2"
-        color="secondary"
+        className={'mr-2'}
+        color={'secondary'}
         onClick={() => this.clear()}
         outline
-        type="button"
+        type={'button'}
       >
         {labelClearButton}
       </Button>
@@ -174,14 +174,14 @@ class Component extends React.Component<$Props, $State> {
 
     return (
       <Row>
-        <Col className="border-thin-top text-right pt-2">
+        <Col className={'border-thin-top text-right pt-2'}>
           {this.renderClearButton()}
           <Button
             color={!changed ? 'default' : buttonColor || 'success'}
             disabled={!changed}
             form={formId}
             outline={!changed}
-            type="submit"
+            type={'submit'}
           >
             {labelSaveButton}
           </Button>
@@ -204,7 +204,7 @@ class Component extends React.Component<$Props, $State> {
     const formId = `${id}Form`;
 
     return (
-      <CardBody className="pb-2">
+      <CardBody className={'pb-2'}>
         <AvForm
           id={formId}
           onValidSubmit={(event: Event, values: $Item) => {
@@ -236,7 +236,7 @@ class Component extends React.Component<$Props, $State> {
 
     return (
       <Card
-        className="FormSection"
+        className={'FormSection'}
         id={id}
       >
         {headerTitle && (
