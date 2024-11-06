@@ -24,8 +24,8 @@ type $OptionalProps = {
   label?: string;
   onChange?: (value: Date | null) => unknown;
   range?: {
-    max?: Date;
-    min?: Date;
+    max?: Date | null;
+    min?: Date | null;
   };
   required?: boolean;
   timeFormat?: string;

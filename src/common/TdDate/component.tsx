@@ -52,18 +52,20 @@ class Component extends React.Component<$Props> {
       value,
     } = this.props;
 
-    const date = moment.utc(value).local();
-    const dateText = date.format(this.getFormat());
+    const nowMoment = moment();
+    const dateMoment = moment.utc(value).local();
+    const dateText = dateMoment.format(this.getFormat());
+    const humanText = moment.duration(dateMoment.diff(nowMoment)).humanize(true);
 
     let view: null | string = null;
 
     if (countdown) {
-      view = date.isAfter(moment())
-        ? moment.duration(date.diff(moment())).humanize(true)
+      view = dateMoment.isAfter(nowMoment)
+        ? humanText
         : countdown;
     } else {
       view = duration
-        ? moment.duration(date.diff(moment())).humanize(true)
+        ? humanText
         : dateText;
     }
 
