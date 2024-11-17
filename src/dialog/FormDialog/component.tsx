@@ -35,10 +35,10 @@ type $OptionalProps = {
 
 type $OwnProps = $OptionalProps & {
   children: $Children;
-  fields: $Component<unknown>;
+  content: $Component<unknown>;
   id: string;
   labelCloseButton: string;
-  labelSaveButton: string;
+  labelConfirmButton: string;
   onAction: (arg0: $Item) => unknown;
   subTitle: string;
   title: string;
@@ -95,10 +95,10 @@ class Component extends React.Component<$Props, $State> {
   render() {
     const {
       buttonColor,
-      fields,
+      content,
       id,
       labelCloseButton,
-      labelSaveButton,
+      labelConfirmButton,
       leftButtons,
       onAction,
       onOpened,
@@ -156,7 +156,7 @@ class Component extends React.Component<$Props, $State> {
                 overflowY: 'auto',
               } : undefined}
             >
-              {fields}
+              {content}
             </ModalBody>
             <ModalFooter>
               {leftButtons && (
@@ -172,7 +172,7 @@ class Component extends React.Component<$Props, $State> {
                   id={'dialog-confirm-button'}
                   type={'submit'}
                 >
-                  {labelSaveButton}
+                  {labelConfirmButton}
                 </Button>
                 <Button
                   color={'secondary'}

@@ -28,7 +28,7 @@ type $OwnProps = $OptionalProps & {
   content: $Component<unknown> | string;
   id: string;
   labelCloseButton: string;
-  labelDeleteButton: string;
+  labelConfirmButton: string;
   onAction: () => unknown;
   subTitle: string;
   title: string;
@@ -86,7 +86,7 @@ class Component extends React.Component<$Props, $State> {
       content,
       id,
       labelCloseButton,
-      labelDeleteButton,
+      labelConfirmButton,
       onAction,
       onOpened,
       size,
@@ -124,7 +124,7 @@ class Component extends React.Component<$Props, $State> {
               id={'dialog-confirm-button'}
               onClick={() => onAction() && this.toggle()}
             >
-              {buttonTitle || labelDeleteButton}
+              {buttonTitle || labelConfirmButton}
             </Button>
             <Button
               color={'secondary'}
