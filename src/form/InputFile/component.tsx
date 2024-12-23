@@ -36,6 +36,7 @@ type $OptionalProps = {
   accept?: Array<keyof typeof inputAccept>;
   className?: string;
   disabled?: boolean;
+  iconClass?: string;
   imageThumbDirUrl?: string;
   label?: string;
   onChange?: (arg0: null | string) => unknown;
@@ -60,10 +61,11 @@ type $State = {
 };
 
 class Component extends React.Component<$Props, $State> {
-  static defaultProps: $OptionalProps = {
+  static readonly defaultProps: $OptionalProps = {
     accept: undefined,
     className: undefined,
     disabled: undefined,
+    iconClass: undefined,
     imageThumbDirUrl: undefined,
     label: undefined,
     onChange: undefined,
@@ -295,6 +297,7 @@ class Component extends React.Component<$Props, $State> {
     const {
       className,
       fileDirUrl,
+      iconClass,
       labelFile,
     } = this.props;
     const {
@@ -305,7 +308,7 @@ class Component extends React.Component<$Props, $State> {
       <div className={`input-group ${className || ''}`}>
         <div className={'input-group-prepend'}>
           <span className={'input-group-text'}>
-            <em className={'icon-doc'} />
+            <em className={iconClass || 'icon-doc'} />
           </span>
         </div>
         <div className={'form-control'}>

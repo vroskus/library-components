@@ -20,15 +20,7 @@ import {
 // Helpers
 import _ from 'lodash';
 
-// Types
-type $Ref = {
-  contains: (arg0: Event['target']) => boolean;
-  hideMenu: () => void;
-};
-
 type $Option = Option;
-
-type $Options = Array<$Option>;
 
 type $OptionalProps = {
   className?: string | void;
@@ -42,9 +34,17 @@ type $OptionalProps = {
   value?: null | string | void;
 };
 
+type $Options = Array<$Option>;
+
 type $Props = $OptionalProps & {
   getOptions: (query: string) => Promise<Array<$Option>>;
   name: string;
+};
+
+// Types
+type $Ref = {
+  contains: (arg0: Event['target']) => boolean;
+  hideMenu: () => void;
 };
 
 type $State = {
@@ -53,8 +53,10 @@ type $State = {
   value?: null | string | void;
 };
 
+const defaultMinLength: number = 3;
+
 class Component extends React.Component<$Props, $State> {
-  static defaultProps: $OptionalProps = {
+  static readonly defaultProps: $OptionalProps = {
     className: undefined,
     label: undefined,
     labelKey: undefined,
@@ -66,7 +68,7 @@ class Component extends React.Component<$Props, $State> {
     value: undefined,
   };
 
-  wrapperRef: React.RefObject<$Ref & typeof Typeahead>;
+  wrapperRef: React.RefObject<$Ref & typeof Typeahead | null>;
 
   handleClickOutsideBind: (event: Event) => void;
 
@@ -79,7 +81,7 @@ class Component extends React.Component<$Props, $State> {
       value: props.value,
     };
 
-    this.wrapperRef = React.createRef<$Ref & typeof Typeahead>();
+    this.wrapperRef = React.createRef();
 
     this.handleClickOutsideBind = this.handleClickOutside.bind(this);
   }
@@ -168,11 +170,11 @@ class Component extends React.Component<$Props, $State> {
           id={name}
           labelKey={labelKeyToUse}
           loading={loading}
-          minLength={minLength || 3}
+          minLength={minLength || defaultMinLength}
           onChange={(selectedOptions: $Options) => {
             let valueToSet: string | undefined;
 
-            if (selectedOptions.length > 0) {
+            if (selectedOptions.length) {
               valueToSet = _.get(
                 selectedOptions[0],
                 `${labelKeyToUse}`,

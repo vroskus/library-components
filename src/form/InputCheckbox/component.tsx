@@ -30,8 +30,10 @@ type $State = {
   value: boolean | null;
 };
 
+const debounceDuration: number = 1000;
+
 class Component extends React.Component<$Props, $State> {
-  static defaultProps: $OptionalProps = {
+  static readonly defaultProps: $OptionalProps = {
     className: undefined,
     description: undefined,
     iconClass: undefined,
@@ -52,7 +54,7 @@ class Component extends React.Component<$Props, $State> {
 
     this.onChange = props.onChange ? _.debounce(
       props.onChange,
-      1000,
+      debounceDuration,
     ) : () => {};
   }
 

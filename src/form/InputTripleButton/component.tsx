@@ -26,8 +26,12 @@ type $State = {
   value: number;
 };
 
+const zeroValue: number = 0;
+const oneValue: number = 1;
+const twoValue: number = 2;
+
 class Component extends React.Component<$Props, $State> {
-  static defaultProps: $OptionalProps = {
+  static readonly defaultProps: $OptionalProps = {
     disabled: undefined,
     onChange: undefined,
     value: undefined,
@@ -37,7 +41,7 @@ class Component extends React.Component<$Props, $State> {
     super(props);
 
     this.state = {
-      value: props.value || 0,
+      value: props.value || zeroValue,
     };
   }
 
@@ -48,7 +52,7 @@ class Component extends React.Component<$Props, $State> {
 
     if (prevProps.value !== value) {
       this.setState({
-        value: value || 0,
+        value: value || zeroValue,
       });
     }
   }
@@ -73,11 +77,11 @@ class Component extends React.Component<$Props, $State> {
             disabled={disabled}
             onClick={() => this.setState(
               {
-                value: 0,
+                value: zeroValue,
               },
-              () => onChange && onChange(0),
+              () => onChange && onChange(zeroValue),
             )}
-            outline={value !== 0}
+            outline={value !== zeroValue}
             size={'xs'}
           >
             {labelDisabled}
@@ -87,11 +91,11 @@ class Component extends React.Component<$Props, $State> {
             disabled={disabled}
             onClick={() => this.setState(
               {
-                value: 1,
+                value: oneValue,
               },
-              () => onChange && onChange(1),
+              () => onChange && onChange(oneValue),
             )}
-            outline={value !== 1}
+            outline={value !== oneValue}
             size={'xs'}
           >
             {labelEnabled}
@@ -101,11 +105,11 @@ class Component extends React.Component<$Props, $State> {
             disabled={disabled}
             onClick={() => this.setState(
               {
-                value: 2,
+                value: twoValue,
               },
-              () => onChange && onChange(2),
+              () => onChange && onChange(twoValue),
             )}
-            outline={value !== 2}
+            outline={value !== twoValue}
             size={'xs'}
           >
             {labelRequired}

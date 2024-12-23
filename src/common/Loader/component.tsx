@@ -21,7 +21,7 @@ type $Props = $OptionalProps & {
 };
 
 class Component extends React.Component<$Props> {
-  static defaultProps: $OptionalProps = {
+  static readonly defaultProps: $OptionalProps = {
     className: undefined,
     overlay: undefined,
     size: undefined,

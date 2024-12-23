@@ -28,7 +28,7 @@ type $OptionalProps = {
   subTitle?: string;
 };
 
-type $OwnProps = $OptionalProps & {
+type $Props = $OptionalProps & {
   content: $Component<unknown> | string;
   id: string;
   labelCloseButton: string;
@@ -36,14 +36,12 @@ type $OwnProps = $OptionalProps & {
   title: string;
 };
 
-type $Props = $OwnProps;
-
 type $State = {
   visible: boolean;
 };
 
 class Component extends React.Component<$Props, $State> {
-  static defaultProps: $OptionalProps = {
+  static readonly defaultProps: $OptionalProps = {
     children: undefined,
     closeAction: undefined,
     instant: undefined,

@@ -23,7 +23,7 @@ type $OptionalProps = {
   size?: 'lg' | 'sm' | 'xl';
 };
 
-type $OwnProps = $OptionalProps & {
+type $Props = $OptionalProps & {
   children: $Children;
   content: $Component<unknown> | string;
   id: string;
@@ -34,14 +34,12 @@ type $OwnProps = $OptionalProps & {
   title: string;
 };
 
-type $Props = $OwnProps;
-
 type $State = {
   visible: boolean;
 };
 
 class Component extends React.Component<$Props, $State> {
-  static defaultProps: $OptionalProps = {
+  static readonly defaultProps: $OptionalProps = {
     buttonTitle: undefined,
     onOpened: undefined,
     size: undefined,

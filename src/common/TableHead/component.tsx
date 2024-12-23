@@ -8,6 +8,7 @@ import type {
 
 type $Sort = [() => Promise<unknown>, () => Promise<unknown>];
 
+/* eslint-disable perfectionist/sort-modules */
 type $Item = {
   className?: string;
   component?: $Component<unknown>;
@@ -36,7 +37,7 @@ type $State = {
 };
 
 class Component extends React.Component<$Props, $State> {
-  static defaultProps: $OptionalProps = {
+  static readonly defaultProps: $OptionalProps = {
     iconClasses: undefined,
   };
 

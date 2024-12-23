@@ -17,10 +17,8 @@ type $OptionalProps = {
   value?: Date | null | string;
 };
 
-type $Props = $OptionalProps;
-
-class Component extends React.Component<$Props> {
-  static defaultProps: $OptionalProps = {
+class Component extends React.Component<$OptionalProps> {
+  static readonly defaultProps: $OptionalProps = {
     countdown: undefined,
     duration: undefined,
     format: undefined,

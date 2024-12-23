@@ -24,7 +24,7 @@ type $State = {
 };
 
 class Component extends React.Component<$Props, $State> {
-  static defaultProps: $OptionalProps = {
+  static readonly defaultProps: $OptionalProps = {
     className: undefined,
     disabled: undefined,
     label: undefined,

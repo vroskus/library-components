@@ -11,11 +11,9 @@ import {
 import _ from 'lodash';
 
 // Types
-type $Option = {
+type $Option = Record<string, unknown> & {
   id: string;
-} & Record<string, unknown>;
-
-type $Options = Array<$Option>;
+};
 
 type $OptionalProps = {
   label?: string;
@@ -24,6 +22,8 @@ type $OptionalProps = {
   required?: boolean;
   value?: Array<$Option>;
 };
+
+type $Options = Array<$Option>;
 
 type $Props = $OptionalProps & {
   labelSelectMultiple: string;
@@ -36,7 +36,7 @@ type $State = {
 };
 
 class Component extends React.Component<$Props, $State> {
-  static defaultProps: $OptionalProps = {
+  static readonly defaultProps: $OptionalProps = {
     label: undefined,
     labelKey: undefined,
     onChange: undefined,

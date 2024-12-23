@@ -1,6 +1,5 @@
 // Global Components
 import React, {
-  Fragment,
   useCallback,
   useState,
 } from 'react';
@@ -21,6 +20,13 @@ import type {
   $Component,
 } from '../../types';
 
+enum Color {
+  black = 'black',
+  green = 'green',
+  red = 'red',
+  white = 'white',
+}
+
 type $OptionalProps = {
   height?: number;
   label?: string;
@@ -33,12 +39,9 @@ type $Props = $OptionalProps & {
   name: string;
 };
 
-enum Color {
-  black = 'black',
-  green = 'green',
-  red = 'red',
-  white = 'white',
-}
+const defaultSize: number = 420;
+const defaultPenWidth: number = 3;
+const widePenWidth: number = 10;
 
 /* eslint-disable complexity */
 const Component = function ({
@@ -100,10 +103,10 @@ const Component = function ({
 
   const style = {
     border: '1px solid #eee',
-    height: height || 420,
+    height: height || defaultSize,
     marginLeft: 'auto',
     marginRight: 'auto',
-    width: width || 420,
+    width: width || defaultSize,
   };
 
   return (
@@ -132,7 +135,7 @@ const Component = function ({
           active={color === Color.black}
           className={'w-100'}
           onClick={() => {
-            setPenWidth(3);
+            setPenWidth(defaultPenWidth);
             setPenColor(Color.black);
           }}
         >
@@ -147,7 +150,7 @@ const Component = function ({
           active={color === Color.red}
           className={'w-100'}
           onClick={() => {
-            setPenWidth(3);
+            setPenWidth(defaultPenWidth);
             setPenColor(Color.red);
           }}
         >
@@ -162,7 +165,7 @@ const Component = function ({
           active={color === Color.green}
           className={'w-100'}
           onClick={() => {
-            setPenWidth(3);
+            setPenWidth(defaultPenWidth);
             setPenColor(Color.green);
           }}
         >
@@ -177,7 +180,7 @@ const Component = function ({
           active={color === Color.white}
           className={'w-100'}
           onClick={() => {
-            setPenWidth(10);
+            setPenWidth(widePenWidth);
             setPenColor(Color.white);
           }}
         >

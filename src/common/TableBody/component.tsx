@@ -20,12 +20,14 @@ type $Props = $OptionalProps & {
   labelEmptyList: string;
 };
 
+const defaultLinesQuantity: number = 15;
+
 const LoadingLines = function ({
   qty,
 }: {
   qty?: number;
 }) {
-  return ([...Array(qty || 15)].map((e, i) => (
+  return ([...Array(qty || defaultLinesQuantity)].map((e, i) => (
     <tr key={`row_${String(i)}`}>
       <td colSpan={100}>
         <div className={'TableBody-empty'} />

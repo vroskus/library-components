@@ -55,7 +55,7 @@ type $State = {
 };
 
 class Component extends React.Component<$Props, $State> {
-  static defaultProps: $OptionalProps = {
+  static readonly defaultProps: $OptionalProps = {
     buttonColor: undefined,
     changed: undefined,
     confirm: undefined,

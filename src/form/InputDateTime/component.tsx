@@ -47,7 +47,7 @@ type $State = {
 };
 
 class Component extends React.Component<$Props, $State> {
-  static defaultProps: $OptionalProps = {
+  static readonly defaultProps: $OptionalProps = {
     className: undefined,
     dateFormat: undefined,
     disabled: undefined,
@@ -205,7 +205,7 @@ class Component extends React.Component<$Props, $State> {
     return false;
   }
 
-  renderInput(props: $Props, openCalendar: unknown): JSX.Element {
+  renderInput(props: $Props, openCalendar: unknown) {
     const {
       className,
       disabled,
