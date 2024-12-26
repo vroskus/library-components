@@ -39,7 +39,7 @@
     "@types/moment": "^2.13.0",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.2",
-    "@vroskus/eslint-config": "^1.0.19",
+    "@vroskus/eslint-config": "^1.0.21",
     "copyfiles": "^2.4.1",
     "typescript": "^5.7.2"
   },

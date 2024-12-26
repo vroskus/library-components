@@ -8,7 +8,6 @@ import type {
 
 type $Sort = [() => Promise<unknown>, () => Promise<unknown>];
 
-/* eslint-disable perfectionist/sort-modules */
 type $Item = {
   className?: string;
   component?: $Component<unknown>;
