@@ -14,6 +14,7 @@ import ModalImage from 'react-modal-image';
 
 // Helpers
 import _ from 'lodash';
+import axios from 'axios';
 
 // Enums
 const inputAccept = {
@@ -109,25 +110,26 @@ class Component extends React.Component<$Props, $State> {
       });
 
       const url = uploadUrl;
-      const data = new FormData();
+      const formData = new FormData();
 
-      data.append(
+      formData.append(
         'file',
         content,
       );
 
-      const params = {
-        body: data,
-        'Content-Type': 'multipart/form-data',
-        method: 'POST',
+      const config = {
+        headers: {
+          'content-type': 'multipart/form-data',
+        },
       };
-      const response = await fetch(
-        url,
-        params,
-      );
-      const responseData = await response.json();
 
-      const value = responseData.fileName;
+      const response = await axios.post(
+        url,
+        formData,
+        config,
+      );
+
+      const value = response.data.fileName;
 
       await this.setStateAsync({
         loading: false,
